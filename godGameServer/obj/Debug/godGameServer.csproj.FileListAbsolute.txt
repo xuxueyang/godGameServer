@@ -1,0 +1,21 @@
+C:\Users\徐雪阳\Documents\Visual Studio 2017\Projects\godGameServer\godGameServer\obj\Debug\godGameServer.csprojResolveAssemblyReference.cache
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\bin\Debug\godGameServer.exe.config
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\bin\Debug\godGameServer.exe
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\bin\Debug\godGameServer.pdb
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.dll
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\bin\Debug\Protocol.dll
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.pdb
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\bin\Debug\Protocol.pdb
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\obj\Debug\godGameServer.csprojResolveAssemblyReference.cache
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\obj\Debug\godGameServer.exe
+D:\myFile\unity\benhuaisan_20170527\godGameServer\godGameServer\obj\Debug\godGameServer.pdb
+D:\myFile\unity\godGame\godGameServer\godGameServer\obj\Debug\godGameServer.csprojResolveAssemblyReference.cache
+D:\myFile\unity\godGame\godGameServer\godGameServer\obj\Debug\godGameServer.exe
+D:\myFile\unity\godGame\godGameServer\godGameServer\obj\Debug\godGameServer.pdb
+D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\godGameServer.exe.config
+D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\godGameServer.exe
+D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\godGameServer.pdb
+D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.dll
+D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.dll
+D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.pdb
+D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.pdb

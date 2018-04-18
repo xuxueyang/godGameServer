@@ -1,0 +1,5 @@
+D:\myFile\unity\godGame\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.csprojResolveAssemblyReference.cache
+D:\myFile\unity\godGame\godGameClient\Assets\Plugins\com.xxy.Protocol.dll
+D:\myFile\unity\godGame\godGameClient\Assets\Plugins\com.xxy.Protocol.pdb
+D:\myFile\unity\godGame\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.dll
+D:\myFile\unity\godGame\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.pdb

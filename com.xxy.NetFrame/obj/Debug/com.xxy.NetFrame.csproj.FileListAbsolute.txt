@@ -1,0 +1,15 @@
+C:\Users\徐雪阳\Documents\Visual Studio 2017\Projects\godGameServer\com.xxy.NetFrame\bin\Debug\com.xxy.NetFrame.dll
+C:\Users\徐雪阳\Documents\Visual Studio 2017\Projects\godGameServer\com.xxy.NetFrame\bin\Debug\com.xxy.NetFrame.pdb
+C:\Users\徐雪阳\Documents\Visual Studio 2017\Projects\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.csprojResolveAssemblyReference.cache
+C:\Users\徐雪阳\Documents\Visual Studio 2017\Projects\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.dll
+C:\Users\徐雪阳\Documents\Visual Studio 2017\Projects\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.pdb
+D:\myFile\unity\benhuaisan_20170527\godGameServer\com.xxy.NetFrame\bin\Debug\com.xxy.NetFrame.dll
+D:\myFile\unity\benhuaisan_20170527\godGameServer\com.xxy.NetFrame\bin\Debug\com.xxy.NetFrame.pdb
+D:\myFile\unity\benhuaisan_20170527\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.csprojResolveAssemblyReference.cache
+D:\myFile\unity\benhuaisan_20170527\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.dll
+D:\myFile\unity\benhuaisan_20170527\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.pdb
+D:\myFile\unity\godGame\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.csprojResolveAssemblyReference.cache
+D:\myFile\unity\godGame\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.dll
+D:\myFile\unity\godGame\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.pdb
+D:\myFile\unity\godGame\godGameClient\Assets\Plugins\com.xxy.NetFrame.dll
+D:\myFile\unity\godGame\godGameClient\Assets\Plugins\com.xxy.NetFrame.pdb

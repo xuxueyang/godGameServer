@@ -1,0 +1,21 @@
+C:\Users\徐雪阳\documents\visual studio 2017\Projects\godGameServer\Protocol\bin\Debug\Protocol.dll
+C:\Users\徐雪阳\documents\visual studio 2017\Projects\godGameServer\Protocol\bin\Debug\Protocol.pdb
+C:\Users\徐雪阳\documents\visual studio 2017\Projects\godGameServer\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache
+C:\Users\徐雪阳\documents\visual studio 2017\Projects\godGameServer\Protocol\obj\Debug\Protocol.dll
+C:\Users\徐雪阳\documents\visual studio 2017\Projects\godGameServer\Protocol\obj\Debug\Protocol.pdb
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Protocol.dll
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Protocol.pdb
+D:\myFile\unity\benhuaisan_20170527\godGameServer\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache
+D:\myFile\unity\benhuaisan_20170527\godGameServer\Protocol\obj\Debug\Protocol.dll
+D:\myFile\unity\benhuaisan_20170527\godGameServer\Protocol\obj\Debug\Protocol.pdb
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Scripts\plus\Protocol.dll
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Scripts\plus\Protocol.pdb
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Plugins\Protocol.dll
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Plugins\Protocol.pdb
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Scripts\Plugs\Protocol.dll
+D:\myFile\unity\benhuaisan_20170527\myGame20170527\Assets\Scripts\Plugs\Protocol.pdb
+D:\myFile\unity\godGame\godGameClient\Assets\Plugins\Protocol.dll
+D:\myFile\unity\godGame\godGameClient\Assets\Plugins\Protocol.pdb
+D:\myFile\unity\godGame\godGameServer\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache
+D:\myFile\unity\godGame\godGameServer\Protocol\obj\Debug\Protocol.dll
+D:\myFile\unity\godGame\godGameServer\Protocol\obj\Debug\Protocol.pdb
