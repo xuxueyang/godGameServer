@@ -19,3 +19,15 @@ D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.d
 D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.dll
 D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.pdb
 D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.pdb
+D:\godGameServer\godGameServer\bin\Debug\godGameServer.exe.config
+D:\godGameServer\godGameServer\bin\Debug\godGameServer.exe
+D:\godGameServer\godGameServer\bin\Debug\godGameServer.pdb
+D:\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.dll
+D:\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.dll
+D:\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.pdb
+D:\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.pdb
+D:\godGameServer\godGameServer\obj\Debug\godGameServer.csprojAssemblyReference.cache
+D:\godGameServer\godGameServer\obj\Debug\godGameServer.csproj.CoreCompileInputs.cache
+D:\godGameServer\godGameServer\obj\Debug\godGameServer.csproj.CopyComplete
+D:\godGameServer\godGameServer\obj\Debug\godGameServer.exe
+D:\godGameServer\godGameServer\obj\Debug\godGameServer.pdb
