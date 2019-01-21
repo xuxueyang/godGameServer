@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xxy.NetFrame", "com.xxy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xxy.Protocol", "Protocol\com.xxy.Protocol.csproj", "{59DF6001-F34C-4714-A6E9-4BAEF28201D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xxy.entity", "com.xxy.entity\com.xxy.entity.csproj", "{2EAA306F-E34E-4373-A7AE-C14892189A70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xxy,logic", "com.xxy.entity\com.xxy,logic.csproj", "{2EAA306F-E34E-4373-A7AE-C14892189A70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
