@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using com.xxy.entity.model;
 
 namespace godGameServer.logic.mainRoom.moduleClass
 {
@@ -17,7 +18,7 @@ namespace godGameServer.logic.mainRoom.moduleClass
             //处理，可能错误，所以会只返回token的erro的type的message
             //世界频道，发送消息
             ChatInfoDTO tmpDTO = new ChatInfoDTO(MessageType.Player, dto.message);
-            brocast(MainRoomProtocol.CHAT_SRES, tmpDTO);
+            brocast(MainRoomProtocol.CHAT_SRES, new ReturnDTO(RETURN_CODE.SUCCESS,tmpDTO));
         }
         public void broSomePeople(UserToken token,ChatInfoDTO dto)
         {
@@ -25,7 +26,7 @@ namespace godGameServer.logic.mainRoom.moduleClass
             {
                 RoleModel model = roleBiz.getModelByName(roleBiz.GetModel(token).area, str);
                 ChatInfoDTO tmpDTO = new ChatInfoDTO(MessageType.Player, dto.message);
-                write(roleBiz.getToken(model.id), MainRoomProtocol.CHAT_SRES, new com.xxy.entity.model.ReturnDTO(RETURN_CODE.SUCCESS,tmpDTO);
+                write(roleBiz.getToken(model.id), MainRoomProtocol.CHAT_SRES, new com.xxy.entity.model.ReturnDTO(RETURN_CODE.SUCCESS,tmpDTO));
             }
         }
         public override byte GetGameType()

@@ -15,6 +15,19 @@ namespace godGameServer.logic.BattleRoom
     {
         RoomManager roomManager = new RoomManager();
 
+        //TODO 做个循环，按照时间调用，战斗房间的处理方法
+        public BattleRoomHandler()
+        {
+            ScheduleUtil.Instance().schedule(_solveBattleLogic, 1000);
+        }
+
+        /// <summary>
+        /// 定时处理战斗逻辑（主要是针对单人NPC房间）
+        /// </summary>
+        void _solveBattleLogic()
+        {
+            
+        }
         void HandlerInterface.ClientClose(UserToken token, string error)
         {
             //断开连接的处理
@@ -37,10 +50,14 @@ namespace godGameServer.logic.BattleRoom
             //收到信息的处理
             switch (message.command)
             {
-                case BattleRoomProtocol.CREATE_C:
+                case BattleRoomProtocol.CREATE_ONE_C:
                     // 创建战斗房间，需要战斗人员们的ID，从ID获取到配置的技能信息，初始化玩家的卡牌、技能、血量、MP等数据
                     // 创建怪物ID，做一个定时器，每回合调用。
-                    roomManager.createRoom(new List<UserToken>() { token});
+                    roomManager.createOneRoom(new List<UserToken>() { token});
+                    break;
+                case BattleRoomProtocol.OVER_TIME_C:
+                    ///TODO 结束战斗回合
+                    
                     break;
             }
         }

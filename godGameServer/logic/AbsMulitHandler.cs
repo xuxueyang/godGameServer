@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using com.xxy.entity.model;
 
 namespace godGameServer.logic
 {
@@ -12,15 +13,15 @@ namespace godGameServer.logic
     {
         public List<UserToken> list = new List<UserToken>();
         #region 消息群发API
-        public void brocast(int command, object message, UserToken exToken = null)
+        public void brocast(int command, ReturnDTO message, UserToken exToken = null)
         {
             this.brocast(GetArea(), command, message, exToken);
         }
-        public void brocast(int area, int command, object message, UserToken exToken = null)
+        public void brocast(int area, int command, ReturnDTO message, UserToken exToken = null)
         {
             this.brocast(GetGameType(), area, command, message, exToken);
         }
-        public void brocast(byte type, int area, int command, object message, UserToken exToken = null)
+        public void brocast(byte type, int area, int command, ReturnDTO message, UserToken exToken = null)
         {
             byte[] value = MessageEncoding.encode(createSocketModel(type, area, command, message));
             value = LengthEncoding.encode(value);

@@ -1,8 +1,6 @@
 ﻿using com.xxy.entity.Base.Mapper;
-using com.xxy.logic.Base.Mapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace com.xxy.logic.Controller.Manager

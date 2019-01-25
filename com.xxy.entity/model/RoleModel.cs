@@ -1,8 +1,6 @@
-﻿using com.xxy.entity.model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using com.xxy.entity.model;
+
 
 namespace godGameServer.dao.model
 {
@@ -13,7 +11,7 @@ namespace godGameServer.dao.model
         public string name;
         public long accountId;//角色所属的账号ID
         public GameModel gameModel;//含有该游戏的属性类       
-        public HashSet<string> friendSet;
+        public List<string> friendSet;
 
         public RoleModel(string name, long id, long accountId)
         {
@@ -29,7 +27,7 @@ namespace godGameServer.dao.model
             this.name = name;
             this.id = id;
             this.accountId = accountId;
-            friendSet = new HashSet<string>();
+            friendSet = new List<string>();
             if (gameModel == null)
                 this.gameModel = new GameModel(accountId, id);
         }

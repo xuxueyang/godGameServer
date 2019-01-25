@@ -1,4 +1,5 @@
-﻿using com.xxy.NetFrame;
+﻿using com.xxy.entity.model;
+using com.xxy.NetFrame;
 using com.xxy.NetFrame.auto;
 using com.xxy.Protocol;
 using com.xxy.Protocol.DTO;
@@ -50,7 +51,7 @@ namespace godGameServer.logic.login
             ExecutorPool.Instance.execute(
             delegate ()
             {
-                string result = accountBiz.login(token, value.accountName, value.password);
+                ReturnDTO result = accountBiz.login(token, value.accountName, value.password);
                 write(token, LoginProtocol.LOGIN_SRES, result);
             }
             );
@@ -62,7 +63,7 @@ namespace godGameServer.logic.login
             ExecutorPool.Instance.execute(
             delegate ()
             {
-                string result = accountBiz.create(token, value.accountName, value.password);
+                ReturnDTO result = accountBiz.create(token, value.accountName, value.password);
                 write(token, LoginProtocol.REG_SRES, result);
             }
             );
@@ -70,7 +71,7 @@ namespace godGameServer.logic.login
         }
         public override byte GetGameType()
         {
-            return Protocol.TYPE_LOGIN;
+            return TypeProtocol.TYPE_LOGIN;
         }
     }
 }

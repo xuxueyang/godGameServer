@@ -62,7 +62,9 @@
     <Compile Include="logic\AbsOneHandler.cs" />
     <Compile Include="biz\impl\IRoleBiz.cs" />
     <Compile Include="logic\BattleRoom\BattleRoomHandler.cs" />
+    <Compile Include="logic\BattleRoom\module\RoomFactory.cs" />
     <Compile Include="logic\BattleRoom\module\RoomManager.cs" />
+    <Compile Include="logic\BattleRoom\module\RoomRoleFactory.cs" />
     <Compile Include="logic\JJCMatch\JJCMatchHandler.cs" />
     <Compile Include="logic\login\loginHandler.cs" />
     <Compile Include="logic\mainRoom\mainRoomHandler.cs" />
