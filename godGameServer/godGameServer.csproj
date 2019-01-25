@@ -44,21 +44,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="biz\AccountBiz.cs" />
+    <Compile Include="biz\BattleRoomBiz.cs" />
     <Compile Include="biz\BizFactory.cs" />
     <Compile Include="biz\impl\IAccountBiz.cs" />
+    <Compile Include="biz\impl\IBattleRoomBiz.cs" />
     <Compile Include="biz\RoleBiz.cs" />
     <Compile Include="cache\AccountCache.cs" />
+    <Compile Include="cache\BattleRoomCache.cs" />
     <Compile Include="cache\CacheFactory.cs" />
     <Compile Include="cache\impl\IAccountCache.cs" />
+    <Compile Include="cache\impl\IBattleRoomCache.cs" />
     <Compile Include="cache\impl\IRoleCache.cs" />
     <Compile Include="cache\RoleCache.cs" />
-    <Compile Include="dao\model\AccountModel.cs" />
-    <Compile Include="dao\model\RoleModel.cs" />
     <Compile Include="HandlerCenter.cs" />
     <Compile Include="HandlerInterfacecs.cs" />
     <Compile Include="logic\AbsMulitHandler.cs" />
     <Compile Include="logic\AbsOneHandler.cs" />
     <Compile Include="biz\impl\IRoleBiz.cs" />
+    <Compile Include="logic\BattleRoom\BattleRoomHandler.cs" />
+    <Compile Include="logic\BattleRoom\module\RoomManager.cs" />
     <Compile Include="logic\JJCMatch\JJCMatchHandler.cs" />
     <Compile Include="logic\login\loginHandler.cs" />
     <Compile Include="logic\mainRoom\mainRoomHandler.cs" />
@@ -76,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\com.xxy.entity\com.xxy,logic.csproj">
+      <Project>{2EAA306F-E34E-4373-A7AE-C14892189A70}</Project>
+      <Name>com.xxy,logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\com.xxy.NetFrame\com.xxy.NetFrame.csproj">
       <Project>{26754EB8-C2A9-43BE-81C8-F1844E47B2BE}</Project>
       <Name>com.xxy.NetFrame</Name>

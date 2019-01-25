@@ -1,4 +1,5 @@
-﻿using com.xxy.NetFrame;
+﻿using com.xxy.entity.model;
+using com.xxy.NetFrame;
 using com.xxy.NetFrame.auto;
 using godGameServer.biz;
 using godGameServer.dao.model;
@@ -43,7 +44,7 @@ namespace godGameServer.logic
         {
             return getUserModel(token).id;
         }
-        public UserToken getToken(int id)
+        public UserToken getToken(long id)
         {
             return roleBiz.getToken(id);
         }
@@ -54,15 +55,15 @@ namespace godGameServer.logic
         {
             write(token, command, null);
         }
-        public void write(UserToken token, int command, object message)
+        public void write(UserToken token, int command, ReturnDTO message)
         {
             write(token, GetArea(), command, message);
         }
-        public void write(UserToken token, int area, int command, object message)
+        public void write(UserToken token, int area, int command, ReturnDTO message)
         {
             write(token, GetGameType(), area, command, message);
         }
-        public void write(UserToken token, byte type, int area, int command, object message)
+        public void write(UserToken token, byte type, int area, int command, ReturnDTO message)
         {
             byte[] value = MessageEncoding.encode(createSocketModel(type, area, command, message));
             value = LengthEncoding.encode(value);
@@ -70,26 +71,26 @@ namespace godGameServer.logic
         }
         #endregion
         #region 通过id传送
-        public void write(int id, int command)
+        public void write(long id, int command)
         {
             write(id, command, null);
         }
-        public void write(int id, int command, object message)
+        public void write(long id, int command, ReturnDTO message)
         {
             write(id, GetGameType(), command, message);
         }
-        public void write(int id, byte type, int command, object message)
+        public void write(long id, byte type, int command, ReturnDTO message)
         {
             write(id, GetGameType(), area, command, message);
         }
-        public void write(int id, byte type, int area, int command, object message)
+        public void write(long id, byte type, int area, int command, ReturnDTO message)
         {
             UserToken token = getToken(id);
             if (token == null) return;
             write(token, type, area, command, message);
         }
 
-        public void writeToUsers(int[] users, byte type, int area, int command, object message)
+        public void writeToUsers(long[] users, byte type, int area, int command, ReturnDTO message)
         {
             byte[] value = MessageEncoding.encode(createSocketModel(type, area, command, message));
             value = LengthEncoding.encode(value);
@@ -106,7 +107,7 @@ namespace godGameServer.logic
         #endregion
 
 
-        public SocketModel createSocketModel(byte type, int area, int command, object message)
+        public SocketModel createSocketModel(byte type, int area, int command, ReturnDTO message)
         {
             return new SocketModel(type, area, command, message);
         }

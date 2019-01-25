@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using com.xxy.NetFrame;
 using com.xxy.NetFrame.auto;
 using godGameServer.logic.login;
 using godGameServer.logic.mainRoom;
 using godGameServer.logic.JJCMatch;
+using godGameServer.logic.BattleRoom;
 using com.xxy.Protocol;
 
 namespace godGameServer
@@ -17,15 +14,18 @@ namespace godGameServer
         HandlerInterface login;
         HandlerInterface mainRoom;
         HandlerInterface jjcmatch;
+        HandlerInterface battleRoom;
         public HandlerCenter()
         {
             login = new loginHandler();
             mainRoom = new mainRoomHandler();
             jjcmatch = new JJCMatchHandler();
+            battleRoom = new BattleRoomHandler();
         }
 
         public override void ClientClose(UserToken token, string error)
         {
+            battleRoom.ClientClose(token, error);
             jjcmatch.ClientClose(token, error);
             mainRoom.ClientClose(token, error);
             login.ClientClose(token, error);
@@ -33,7 +33,7 @@ namespace godGameServer
 
         public override void ClientConnect(UserToken token)
         {
-            
+            battleRoom.ClientConnect(token);
             mainRoom.ClientConnect(token);
             login.ClientConnect(token);
         }
@@ -43,14 +43,17 @@ namespace godGameServer
             SocketModel model = message as SocketModel;
             switch (model.type)
             {
-                case Protocol.TYPE_LOGIN:
+                case TypeProtocol.TYPE_LOGIN:
                     login.MessageReceive(token, model);
                     break;
-                case Protocol.TYPE_MAIN_ROOM:
+                case TypeProtocol.TYPE_MAIN_ROOM:
                     mainRoom.MessageReceive(token, model);
                     break;
-                case Protocol.TYPE_MATCH_JJC:
+                case TypeProtocol.TYPE_MATCH_JJC:
                     jjcmatch.MessageReceive(token, model);
+                    break;
+                case TypeProtocol.TYPE_BATTLE_ROOM:
+                    battleRoom.MessageReceive(token, model);
                     break;
                 default:
                     //未知模块，无视

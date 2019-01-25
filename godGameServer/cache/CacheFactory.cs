@@ -11,10 +11,13 @@ namespace godGameServer.cache
     {
         public readonly static IRoleCache roleCache;
         public readonly static IAccountCache accountCache;
+        public readonly static IBattleRoomCache battleRoomCache;
+
         static CacheFactory()
         {
             roleCache = new RoleCache();
             accountCache = new AccountCache();
+            battleRoomCache = new BattleRoomCache();
         }
     }
 }

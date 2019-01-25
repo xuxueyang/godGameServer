@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using com.xxy.entity.model;
 using com.xxy.NetFrame;
 using godGameServer.dao.model;
 
@@ -17,7 +18,7 @@ namespace godGameServer.biz
         /// <param name="token"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        string Create(UserToken token, string name);
+        ReturnDTO Create(UserToken token, string name);
 
         /// <summary>
         /// 获取连接对应的用户信息

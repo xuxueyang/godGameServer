@@ -1,4 +1,5 @@
-﻿using godGameServer.logic;
+﻿using godGameServer.biz.impl;
+using godGameServer.logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace godGameServer.biz
     {
         public readonly static IAccountBiz accountBiz;
         public readonly static IRoleBiz roleBiz;
+        public readonly static IBattleRoomBiz battleRoomBiz;
         static BizFactory()
         {
             accountBiz = new AccountBiz();
             roleBiz = new RoleBiz();
+            battleRoomBiz = new BattleRoomBiz();
         }
     }
 }

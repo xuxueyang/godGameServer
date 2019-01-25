@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using com.xxy.Protocol;
+using com.xxy.entity.model;
 
 namespace godGameServer.logic.mainRoom.moduleClass
 {
@@ -15,22 +16,22 @@ namespace godGameServer.logic.mainRoom.moduleClass
         public void getRoleModel(UserToken token)
         {
             RoleModel model = this.roleBiz.GetModel(token);
-            write(token, MainRoomProtocol.GET_ROLE_INFO_SRES, model);
+            write(token, MainRoomProtocol.GET_ROLE_INFO_SRES, new ReturnDTO(RETURN_CODE.SUCCESS, model));
         }
         public void regRole(UserToken token,MainRoomLoginAndRegInfoDTO dto)
         {
-            string result = this.roleBiz.Create(token, dto.name);
+            ReturnDTO result = this.roleBiz.Create(token, dto.name);
             write(token, MainRoomProtocol.REG_ROLE_SRES, result);
         }
         public void logRole(UserToken token,MainRoomLoginAndRegInfoDTO dto)
         {
             RoleModel model = this.roleBiz.Online(token);
-            write(token, MainRoomProtocol.LOGIN_ROLE_SRES, model);
+            write(token, MainRoomProtocol.LOGIN_ROLE_SRES, new ReturnDTO(RETURN_CODE.SUCCESS,model));
         }
 
         public override byte GetGameType()
         {
-            return Protocol.TYPE_MAIN_ROOM;
+            return TypeProtocol.TYPE_MAIN_ROOM;
         }
 
 

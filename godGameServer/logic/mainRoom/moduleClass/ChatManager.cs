@@ -25,12 +25,12 @@ namespace godGameServer.logic.mainRoom.moduleClass
             {
                 RoleModel model = roleBiz.getModelByName(roleBiz.GetModel(token).area, str);
                 ChatInfoDTO tmpDTO = new ChatInfoDTO(MessageType.Player, dto.message);
-                write(roleBiz.getToken(model.id), MainRoomProtocol.CHAT_SRES, dto.message);
+                write(roleBiz.getToken(model.id), MainRoomProtocol.CHAT_SRES, new com.xxy.entity.model.ReturnDTO(RETURN_CODE.SUCCESS,tmpDTO);
             }
         }
         public override byte GetGameType()
         {
-            return Protocol.TYPE_MAIN_ROOM;
+            return TypeProtocol.TYPE_MAIN_ROOM;
         }
     }
 }

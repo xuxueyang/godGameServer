@@ -44,12 +44,19 @@
     <Compile Include="Base\Card\Impl\PermanentCard.cs" />
     <Compile Include="Base\Mapper\Mapper.cs" />
     <Compile Include="Base\Material.cs" />
+    <Compile Include="Base\GameRole\BaseRole.cs" />
     <Compile Include="Controller\MainLogicManager.cs" />
     <Compile Include="Controller\Manager\MapperManager.cs" />
     <Compile Include="Factory\CardFactory.cs" />
     <Compile Include="Factory\EffectFactory.cs" />
     <Compile Include="Effect\Recover.cs" />
     <Compile Include="Base\Errors\BaseError.cs" />
+    <Compile Include="model\AccountModel.cs" />
+    <Compile Include="model\BattleRoom\Room.cs" />
+    <Compile Include="model\BattleRoom\RoomRole.cs" />
+    <Compile Include="model\GameModel.cs" />
+    <Compile Include="model\ReturnDTO.cs" />
+    <Compile Include="model\RoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\CommonUtil.cs" />
   </ItemGroup>
