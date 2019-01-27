@@ -1,15 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using com.xxy.logic.Base.Card;
 
-namespace com.xxy.logic.Base.Card
+namespace com.xxy.logic.Base.Skill
 {
-
-
-    /// <summary>
-    /// 基本的卡牌类
-    /// </summary>
-    public abstract class BaseCard
+    public class BaseSkill
     {
         private string id;
         private string name;
@@ -47,10 +42,10 @@ namespace com.xxy.logic.Base.Card
         /// 使用都回合阶段
         /// </summary>
         private TimeType type;
-        public BaseCard(string id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
+        public BaseSkill(string id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
             Dictionary<string, float> upMaterialNeed,
             string description,
-            UseCard[] onUses)
+            UseSkill[] onUses)
         {
             this.id = id;
             this.name = name;
@@ -63,9 +58,9 @@ namespace com.xxy.logic.Base.Card
             this.description = description;
             if (onUses != null)
             {
-                foreach (UseCard useCard in onUses)
+                foreach (UseSkill useCard in onUses)
                 {
-                    this._useCard += useCard;
+                    this._useSkill += useCard;
                 }
             }
         }
@@ -82,12 +77,12 @@ namespace com.xxy.logic.Base.Card
         /// <summary>
         /// 每张卡牌有
         /// </summary>
-        private UseCard _useCard;
-        public virtual void useCard(object sender,UseCardEventArgs e)
+        private UseSkill _useSkill;
+        public virtual void useSkill(object sender,UseSkillEventArgs e)
         {
             if (this.IsAvailable)
             {
-                this._useCard(sender, e);
+                this._useSkill(sender, e);
             }
             else
             {

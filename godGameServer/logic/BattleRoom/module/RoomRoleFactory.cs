@@ -34,6 +34,7 @@ namespace godGameServer.logic.BattleRoom.module
             PlayerBattleRole role = new PlayerBattleRole();
             role.SetHp(roleModel.gameModel.baseRole.GetHp());
             role.SetMp(roleModel.gameModel.baseRole.GetMp());
+            
             return new RoomRole(CommonUtil.getUUID(), role);
         }
     }

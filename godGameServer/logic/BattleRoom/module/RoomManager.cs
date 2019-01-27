@@ -23,6 +23,13 @@ namespace godGameServer.logic.BattleRoom.module
     public class RoomManager:AbsOneHandler
     {
         public Dictionary<string,Room> idRoomMap = new Dictionary<string, Room>();
+
+        public Room GetRoomById(string id)
+        {
+            if (idRoomMap.ContainsKey(id))
+                return idRoomMap[id];
+            return null;
+        }
         //分配匹配，和创建战斗房间
         public Tuple<bool,List<RoleModel>> GetModelsByTokens(List<UserToken> userTokens)
         {

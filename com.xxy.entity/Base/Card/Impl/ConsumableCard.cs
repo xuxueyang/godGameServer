@@ -20,7 +20,7 @@ namespace com.xxy.logic.Base.Card
 
 
 
-        public override void useCard(object sender, EventArgs e)
+        public override void useCard(object sender, UseCardEventArgs e)
         {
             // TODO 判断有没有使用次数
             if (useCount > 0)
