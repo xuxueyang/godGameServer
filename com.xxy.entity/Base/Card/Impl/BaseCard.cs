@@ -62,7 +62,7 @@ namespace com.xxy.logic.Base.Card
             {
                 foreach (UseCard useCard in onUses)
                 {
-                    this._useCard += useCard;
+                    this._useCard.Add(useCard);
                 }
             }
         }
@@ -79,13 +79,16 @@ namespace com.xxy.logic.Base.Card
         /// <summary>
         /// 每张卡牌有
         /// </summary>
-        private UseCard _useCard;
+        private List<UseCard> _useCard = new List<UseCard>();
         public virtual void useCard(object sender,UseCardEventArgs e)
         {
             if (this.IsAvailable)
             {
-                this._useCard(sender, e);
-                Console.WriteLine("使用了" + this.name + ",描述：" + this.description);
+                foreach (var item in _useCard)
+                {
+                    item(sender, e);
+                    Console.WriteLine("使用了" + this.name + ",描述：" + this.description);
+                }
             }
             else
             {

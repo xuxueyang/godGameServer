@@ -49,12 +49,10 @@ namespace com.xxy.entity.Base.GameRole.NPCRole
 
         public void attack(CallBack callBack)
         {
-            throw new NotImplementedException();
         }
 
         public void attacked(object attack, EventArgs args, CallBack callBack)
         {
-            throw new NotImplementedException();
         }
 
         public void dead(CallBack callBack)
@@ -68,27 +66,26 @@ namespace com.xxy.entity.Base.GameRole.NPCRole
 
         public RoleType getRoleType()
         {
-            throw new NotImplementedException();
+            return RoleType.NPC;
         }
 
         public void UseCard()
         {
-            throw new NotImplementedException();
         }
 
         public void UseSkill()
         {
-            throw new NotImplementedException();
+            
         }
 
         public List<BaseSkill> GetBaseSkills()
         {
-            throw new NotImplementedException();
+            return this.BaseSkills;
         }
 
         public List<BaseCard> GetBaseCards()
         {
-            throw new NotImplementedException();
+            return this.BaseCards;
         }
     }
 }

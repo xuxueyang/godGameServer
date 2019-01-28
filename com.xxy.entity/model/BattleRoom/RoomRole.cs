@@ -31,14 +31,16 @@ namespace com.xxy.entity.model.BattleRoom
             this.roomId = roomId;
             this.roleType = roleType;
             //初始化房间角色信息
-
+            // 信息托管
+            this.cardList = role.GetBaseCards();
+            this.skillList = role.GetBaseSkills();
         }
         /// <summary>
         /// 处理每次判断处理的逻辑
         /// </summary>
         public void _solve_each_logic()
         {
-            
+            Console.WriteLine("预处理角色中:" + this.role.ToString());
         }
         /// <summary>
         /// 处理战斗结束的状态.玩家不能主动进入下一个状态，需要room控制
@@ -56,6 +58,7 @@ namespace com.xxy.entity.model.BattleRoom
         {
             if(!isMyTime||this.battleTimeType==BattleTimeType.OVER)
                 return;
+            Console.WriteLine("处理角色的战斗逻辑...");
             List<BaseRoleAction> targets = new List<BaseRoleAction>();
             foreach (var item in targetRoomRoles)
             {
@@ -68,7 +71,7 @@ namespace com.xxy.entity.model.BattleRoom
                 //做一些定时任务，每次执行指令应该需要时间，或者说？立刻返回
                 // NPC应该只能调用技能。
                 //TODO 判断如果血量超过阶段，触发方法
-
+                Console.WriteLine("开始随机使用技能。。。");
                 //TODO 从技能中随机挑选一个使用以及随机判定卡牌使用不使用
                 if (this.cardList != null && this.cardList.Count > 0)
                 {
@@ -83,12 +86,13 @@ namespace com.xxy.entity.model.BattleRoom
                     Random rd = new Random();
                     int skillIndex = rd.Next() % this.skillList.Count;
                     var args = new UseSkillEventArgs();
-                    args.targets = null;//TODO 设置使用对象！
+                    args.targets = targets;//TODO 设置使用对象！
                     this.skillList[skillIndex].useSkill(this.role, args);
                 }
                 //发送回合结束的信息
                 //this.isMyTime = false;
                 this.battleTimeType = BattleTimeType.OVER;
+                Console.WriteLine("随机使用技能结束。。。");
                 //TODO 发送NPC回合结束的触发
             }
             else if(roleType == RoleType.PLAYER)

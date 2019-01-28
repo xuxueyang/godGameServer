@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace godGameServer.biz
 {
-    class BattleRoomBiz:IBattleRoomBiz
+    public class BattleRoomBiz:IBattleRoomBiz
     {
 
     }

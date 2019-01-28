@@ -34,7 +34,7 @@ namespace com.xxy.entity.model.BattleRoom
         public void _timerLogic()
         {
             //需要执行所有角色的预处理状态
-
+            Console.WriteLine("处理：" + this.id + " 的逻辑中...");
             foreach (var item in roles)
             {
                 item._solve_each_logic();            
@@ -77,6 +77,8 @@ namespace com.xxy.entity.model.BattleRoom
         {
             //TODO 进入下一个回合，将排除当前的角色进入下一个阶段
             // 先将全员设置为不可用，从剩下的设置为回合开始
+            Console.WriteLine("好啦。回合结束，让我们看看对面怎么操作的吧！~\n\n");
+
             var nextPlayers = getNoCurrentTime();
             foreach (var item in this._currentRoles)
             {

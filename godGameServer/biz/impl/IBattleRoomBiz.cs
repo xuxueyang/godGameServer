@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace godGameServer.biz.impl
 {
-    class IBattleRoomBiz
+    public interface IBattleRoomBiz
     {
     }
 }

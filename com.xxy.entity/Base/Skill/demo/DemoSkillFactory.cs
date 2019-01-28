@@ -54,7 +54,7 @@ namespace com.xxy.logic.Base.Skill.demo
             };
             BaseSkill card = new BaseSkill("1","炫酷火球","",1,1,1,false,null,
                 "你不觉得火球作为demo很炫酷吗", new UseSkill[]{cardEffect1, cardEffect2});
-
+            card.IsAvailable = true;
             return card;               
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace com.xxy.logic.Base.Skill.demo
             };
             BaseSkill card = new BaseSkill("1", "回复术", "",1,1,1,false,null,
                 "没有什么是钱解决不了的问题", new UseSkill[]{ cardEffect1 , cardEffect2});
-
+            card.IsAvailable = true;
             return card;   
         }
     }

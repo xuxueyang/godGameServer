@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using com.xxy.entity.model.BattleRoom;
 using com.xxy.logic.Base;
 using godGameServer.tool;
+using System.Timers;
 
 namespace godGameServer.logic.BattleRoom.module
 {
@@ -21,12 +22,17 @@ namespace godGameServer.logic.BattleRoom.module
     /// </summary>
     public class RoomManager:AbsOneHandler
     {
+        Timer timer;
         public RoomManager()
         {
             Room room = RoomFactory.Instance.createDemoOneNPCRoom();
             start(room);
-            ScheduleUtil.Instance().schedule(new TimeEvent(_timer),1);
+            timer = new Timer(2000);
+            timer.Elapsed += _timer;
+            timer.Start();
+//            ScheduleUtil.Instance().timeSchedule(new TimeEvent(_timer),2);
         }
+        
         public Dictionary<string,Room> idRoomMap = new Dictionary<string, Room>();
         Random rd = new Random();
         public Room GetRoomById(string id)
@@ -103,7 +109,7 @@ namespace godGameServer.logic.BattleRoom.module
             return TypeProtocol.TYPE_BATTLE_ROOM;
         }
         //定时处理战斗逻辑
-        private void _timer()
+        private void _timer(object sender, ElapsedEventArgs e)
         {
             foreach (var room in this.idRoomMap.Values)
             {

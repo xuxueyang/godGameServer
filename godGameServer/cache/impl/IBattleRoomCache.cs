@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace godGameServer.cache.impl
 {
-    public class IBattleRoomCache
+    public interface IBattleRoomCache
     {
-        public static implicit operator IBattleRoomCache(BattleRoomCache v)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
