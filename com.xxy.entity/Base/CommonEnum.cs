@@ -31,4 +31,9 @@ namespace com.xxy.logic.Base
         ONE_NPC_ROOM,//自己一个人和npc的战斗房间
         DEMO_NPC,//npc之间的对战
     }
+    public enum BuffType
+    {
+        ONE_EFFECT,//一次性作用的
+        EACH_TIME_EFFECT,//每回合作用的
+    }
 }

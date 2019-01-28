@@ -59,7 +59,6 @@ namespace godGameServer.logic.BattleRoom
                     break;
                 case BattleRoomProtocol.OVER_TIME_C:
                     ///TODO 结束战斗回合
-                    
                     break;
             }
         }

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Buff\BaseBuff.cs" />
     <Compile Include="Base\Card\CommonEventArgs.cs" />
     <Compile Include="Base\Card\demo\DemoCardFactory.cs" />
     <Compile Include="Base\Card\Impl\BaseCard.cs" />
