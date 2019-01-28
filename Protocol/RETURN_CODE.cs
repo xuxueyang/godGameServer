@@ -18,8 +18,11 @@ namespace com.xxy.Protocol
         public static readonly string ACCOUNT_HAS_ROLE = "3002—账户已经拥有角色";
         public static readonly string ROLE_NAME_HAS_EXIST = "3003—角色名字已存在";
         public static readonly string MAIN_ROOM_DRIEND_DELETE_ROLE_NOT_EXIST = "3004—删除的好友不存在";
-        // 战斗房间的
+        // 战斗房间的5
         public static readonly string BAALE_ROOM_CAEATE_ERROR = "5001—有人终止了匹配，请重试";
+
+        //战斗的 6
+        public static readonly string BATTLE_HAS_NO_MP = "6001—角色消耗没有蓝量";
 
     }
 }

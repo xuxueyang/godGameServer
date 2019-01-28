@@ -1,11 +1,15 @@
+using com.xxy.logic.Base;
+using com.xxy.logic.Base.Card;
+using com.xxy.logic.Base.Skill;
 using System;
+using System.Collections.Generic;
 
 namespace com.xxy.entity.Base.GameRole
 {
     /// <summary>
     /// 战斗时的玩家角色
     /// </summary>
-    public class PlayerBattleRole:BaseRole
+    public class PlayerBattleRole:BaseRoleAction
     {
         public bool _isDead = false;
         public bool isDead()
@@ -48,6 +52,26 @@ namespace com.xxy.entity.Base.GameRole
         }
 
         public RoleType getRoleType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UseCard()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UseSkill()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BaseSkill> GetBaseSkills()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BaseCard> GetBaseCards()
         {
             throw new NotImplementedException();
         }

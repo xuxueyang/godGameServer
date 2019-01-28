@@ -17,7 +17,7 @@ namespace godGameServer
         HandlerInterface battleRoom;
         public HandlerCenter()
         {
-            login = new loginHandler();
+            login =  new loginHandler();
             mainRoom = new mainRoomHandler();
             jjcmatch = new JJCMatchHandler();
             battleRoom = new BattleRoomHandler();

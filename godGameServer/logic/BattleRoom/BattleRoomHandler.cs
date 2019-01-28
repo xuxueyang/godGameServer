@@ -19,16 +19,9 @@ namespace godGameServer.logic.BattleRoom
         //TODO 做个循环，按照时间调用，战斗房间的处理方法
         public BattleRoomHandler()
         {
-            ScheduleUtil.Instance().schedule(_solveBattleLogic, 1000);
+
         }
 
-        /// <summary>
-        /// 定时处理战斗逻辑（主要是针对单人NPC房间）
-        /// </summary>
-        void _solveBattleLogic()
-        {
-            
-        }
         void HandlerInterface.ClientClose(UserToken token, string error)
         {
             //断开连接的处理
@@ -59,7 +52,7 @@ namespace godGameServer.logic.BattleRoom
                 case BattleRoomProtocol.USE_CARD_C:
                     //玩家使用来技能，针对那个对象等
                     var room = roomManager.GetRoomById(message.getMessage<BattleRoomDTO>().roomId);
-                    room.useCard(message.getMessage<BattleRoomDTO>());
+                    // TODO room.useCard(message.getMessage<BattleRoomDTO>());
                     break;
                 case BattleRoomProtocol.USE_SKILL_C:
                     //玩家使用来技能，针对某个对象

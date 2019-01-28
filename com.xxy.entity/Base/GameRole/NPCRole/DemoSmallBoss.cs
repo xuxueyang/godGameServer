@@ -1,14 +1,21 @@
 using System;
+using System.Collections.Generic;
+using com.xxy.logic.Base;
+using com.xxy.logic.Base.Card;
+using com.xxy.logic.Base.Skill;
 
 namespace com.xxy.entity.Base.GameRole.NPCRole
 {
     /// <summary>
     /// 一个小的怪物的角色
     /// </summary>
-    public class DemoSmallBoss:BaseRole
+    public class DemoSmallBoss: BaseRoleData,BaseRoleAction
     {
-        private int hp = 100;
-        private int mp = 200;
+        public DemoSmallBoss()
+        {
+            this.hp = 100;
+            this.mp = 200;
+        }
         public bool _isDead = false;
         public bool isDead()
         {
@@ -60,6 +67,26 @@ namespace com.xxy.entity.Base.GameRole.NPCRole
         }
 
         public RoleType getRoleType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UseCard()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UseSkill()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BaseSkill> GetBaseSkills()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BaseCard> GetBaseCards()
         {
             throw new NotImplementedException();
         }

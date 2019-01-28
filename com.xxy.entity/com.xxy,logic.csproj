@@ -45,11 +45,12 @@
     <Compile Include="Base\Card\Impl\ConsumableCard.cs" />
     <Compile Include="Base\Card\Impl\PermanentCard.cs" />
     <Compile Include="Base\CommonEnum.cs" />
+    <Compile Include="Base\GameRole\BaseRoleData.cs" />
     <Compile Include="Base\GameRole\NPCRole\DemoSmallBoss.cs" />
     <Compile Include="Base\GameRole\PlayerBattleRole.cs" />
     <Compile Include="Base\Mapper\Mapper.cs" />
     <Compile Include="Base\Material.cs" />
-    <Compile Include="Base\GameRole\BaseRole.cs" />
+    <Compile Include="Base\GameRole\BaseRoleAction.cs" />
     <Compile Include="Base\Skill\BaseSkill.cs" />
     <Compile Include="Base\Skill\demo\DemoSkillFactory.cs" />
     <Compile Include="Controller\MainLogicManager.cs" />

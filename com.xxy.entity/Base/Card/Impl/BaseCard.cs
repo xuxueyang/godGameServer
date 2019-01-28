@@ -43,10 +43,7 @@ namespace com.xxy.logic.Base.Card
         /// </summary>
         private bool isAvailable;
         private string imgUri;
-        /// <summary>
-        /// 使用都回合阶段
-        /// </summary>
-        private TimeType type;
+
         public BaseCard(string id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
             Dictionary<string, float> upMaterialNeed,
             string description,
@@ -88,6 +85,7 @@ namespace com.xxy.logic.Base.Card
             if (this.IsAvailable)
             {
                 this._useCard(sender, e);
+                Console.WriteLine("使用了" + this.name + ",描述：" + this.description);
             }
             else
             {

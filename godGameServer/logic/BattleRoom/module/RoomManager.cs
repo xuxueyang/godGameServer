@@ -10,20 +10,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using com.xxy.entity.model.BattleRoom;
+using com.xxy.logic.Base;
+using godGameServer.tool;
 
 namespace godGameServer.logic.BattleRoom.module
 {
-    public enum RoomType
-    {
-        ONE_NPC_ROOM,//自己一个人和npc的战斗房间
-    }
+
     /// <summary>
     /// 房间管理
     /// </summary>
     public class RoomManager:AbsOneHandler
     {
+        public RoomManager()
+        {
+            Room room = RoomFactory.Instance.createDemoOneNPCRoom();
+            start(room);
+            ScheduleUtil.Instance().schedule(new TimeEvent(_timer),1);
+        }
         public Dictionary<string,Room> idRoomMap = new Dictionary<string, Room>();
-
+        Random rd = new Random();
         public Room GetRoomById(string id)
         {
             if (idRoomMap.ContainsKey(id))
@@ -79,8 +84,16 @@ namespace godGameServer.logic.BattleRoom.module
                     // 判断是不是一个人
                     if (roleModels.Count == 1)
                     {
-                        Room room = RoomFactory.Instance.createOneRoom(roleModels[0]);
-                        idRoomMap.Add(room.id,room);
+                        {
+                            Room room = RoomFactory.Instance.createOneRoom(roleModels[0]);
+                            start(room);
+                        }
+                    }
+                    break;
+                case RoomType.DEMO_NPC:
+                    {
+                        Room room = RoomFactory.Instance.createDemoOneNPCRoom();
+                        start(room);
                     }
                     break;
             }
@@ -88,6 +101,37 @@ namespace godGameServer.logic.BattleRoom.module
         public override byte GetGameType()
         {
             return TypeProtocol.TYPE_BATTLE_ROOM;
+        }
+        //定时处理战斗逻辑
+        private void _timer()
+        {
+            foreach (var room in this.idRoomMap.Values)
+            {
+                room._timerLogic();
+            }
+        }
+        public void start(Room room)
+        {
+            switch (room.roomType)
+            {
+                case RoomType.DEMO_NPC:
+                    // 定时器执行
+                    pre_start_DEMO_NPC_ROOM(room);
+                    break;
+            }
+        }
+        private void pre_start_DEMO_NPC_ROOM(Room room)
+        {
+            //先确定回合是谁(默认是玩家）,随机选一个NPC开始
+            var npcs = room.getAllNPC();
+            if (npcs.Count < 1)
+                throw new Exception();
+            //生成随机数
+            int i = rd.Next();
+            int first = i % npcs.Count;
+            room.selectStartRole(npcs,new List<int>() { first });
+            //TODO 预处理结束，假如逻辑队列，定时器执行
+            idRoomMap.Add(room.id, room);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using com.xxy.entity.model;
 using com.xxy.logic.Base.Card;
 
 namespace com.xxy.logic.Base.Skill
@@ -38,10 +39,7 @@ namespace com.xxy.logic.Base.Skill
         /// </summary>
         private bool isAvailable;
         private string imgUri;
-        /// <summary>
-        /// 使用都回合阶段
-        /// </summary>
-        private TimeType type;
+
         public BaseSkill(string id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
             Dictionary<string, float> upMaterialNeed,
             string description,
@@ -60,7 +58,7 @@ namespace com.xxy.logic.Base.Skill
             {
                 foreach (UseSkill useCard in onUses)
                 {
-                    this._useSkill += useCard;
+                    this._useSkill.Add(useCard);
                 }
             }
         }
@@ -77,12 +75,23 @@ namespace com.xxy.logic.Base.Skill
         /// <summary>
         /// 每张卡牌有
         /// </summary>
-        private UseSkill _useSkill;
+        private List<UseSkill> _useSkill = new List<UseSkill>();
         public virtual void useSkill(object sender,UseSkillEventArgs e)
         {
             if (this.IsAvailable)
             {
-                this._useSkill(sender, e);
+                if (this._useSkill!=null&&this._useSkill.Count>0)
+                {
+                    foreach (var item in this._useSkill)
+                    {
+                        ReturnDTO success = item(sender, e);
+                        if (success.hasError)
+                        {
+                            break;
+                        }
+                    }
+                }
+                Console.WriteLine("使用了" + this.name + ",描述：" + this.description);
             }
             else
             {

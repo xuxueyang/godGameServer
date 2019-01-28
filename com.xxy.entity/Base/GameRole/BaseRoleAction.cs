@@ -1,21 +1,17 @@
-﻿using System;
+﻿using com.xxy.logic.Base.Card;
+using com.xxy.logic.Base.Skill;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace com.xxy.entity.Base.GameRole
 {
-    public delegate void CallBack(object sender,EventArgs args);
 
-    public enum RoleType
-    {
-        NPC,//npc的角色，电脑控制
-        PLAYER//玩家
-    }
     /// <summary>
     /// 基础的角色类，所以（包含怪物，都应该继承此类）
     /// 血量、蓝量、动作组件（被攻击），攻击，这些、
     /// </summary>
-    public  interface  BaseRole
+    public  interface  BaseRoleAction
     {
         bool isDead();
         int GetHp();
@@ -26,7 +22,10 @@ namespace com.xxy.entity.Base.GameRole
         /// 攻击的实现
         /// </summary>
         void attack(CallBack callBack);
-
+        void UseCard();
+        void UseSkill();
+        List<BaseSkill> GetBaseSkills();
+        List<BaseCard> GetBaseCards();
         /// <summary>
         /// 被攻击的实现
         /// </summary>
@@ -36,6 +35,6 @@ namespace com.xxy.entity.Base.GameRole
         /// 死亡的触发
         /// </summary>
         void dead(CallBack callBack);
-        RoleType getRoleType();
+        // RoleType getRoleType();
     }
 }

@@ -22,8 +22,10 @@ D:\myFile\unity\godGame\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.p
 D:\godGameServer\godGameServer\bin\Debug\godGameServer.exe.config
 D:\godGameServer\godGameServer\bin\Debug\godGameServer.exe
 D:\godGameServer\godGameServer\bin\Debug\godGameServer.pdb
+D:\godGameServer\godGameServer\bin\Debug\com.xxy.entity.dll
 D:\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.dll
 D:\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.dll
+D:\godGameServer\godGameServer\bin\Debug\com.xxy.entity.pdb
 D:\godGameServer\godGameServer\bin\Debug\com.xxy.NetFrame.pdb
 D:\godGameServer\godGameServer\bin\Debug\com.xxy.Protocol.pdb
 D:\godGameServer\godGameServer\obj\Debug\godGameServer.csprojAssemblyReference.cache

@@ -2,6 +2,9 @@ using com.xxy.entity.Base.GameRole;
 using com.xxy.entity.Base.GameRole.NPCRole;
 using com.xxy.entity.model.BattleRoom;
 using com.xxy.entity.Util;
+using com.xxy.logic.Base;
+using com.xxy.logic.Base.Card.demo;
+using com.xxy.logic.Base.Skill.demo;
 using godGameServer.dao.model;
 
 namespace godGameServer.logic.BattleRoom.module
@@ -26,7 +29,13 @@ namespace godGameServer.logic.BattleRoom.module
 
         public RoomRole getDemoSmallBoss()
         {
-            return  new RoomRole(CommonUtil.getUUID(),new DemoSmallBoss());
+            //创建boss，需要初始化他有的技能和卡牌，以及生命值
+            DemoSmallBoss role =  new DemoSmallBoss();
+            role.GetBaseCards().Add(DemoCardFactory.Instance.getDamangeCard(30));
+            role.GetBaseCards().Add(DemoCardFactory.Instance.getRecoverCard(20));
+            role.GetBaseSkills().Add(DemoSkillFactory.Instance.getDamangeSkill(30));
+            role.GetBaseSkills().Add(DemoSkillFactory.Instance.getRecoverSkill(20));
+            return  new RoomRole(CommonUtil.getUUID(), role, RoleType.NPC);
         }
 
         public RoomRole createPlayerRoleByModel(RoleModel roleModel)
@@ -35,7 +44,7 @@ namespace godGameServer.logic.BattleRoom.module
             role.SetHp(roleModel.gameModel.baseRole.GetHp());
             role.SetMp(roleModel.gameModel.baseRole.GetMp());
             
-            return new RoomRole(CommonUtil.getUUID(), role);
+            return new RoomRole(CommonUtil.getUUID(), role, RoleType.PLAYER);
         }
     }
 }

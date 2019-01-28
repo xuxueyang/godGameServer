@@ -9,7 +9,7 @@ namespace com.xxy.entity.model
     {
         public long roleId;
         public long accountId;
-        public BaseRole baseRole;
+        public BaseRoleAction baseRole;
         public object BattleCardConfManager;//战斗卡牌配置——多个列表，有一个当前配置
         public object SkillConfManager;//技能配置——多个列表，有一个当前配置
         public object PackageManager;//背包管理//public List<object> PackageResourceList;//资源列表（拥有的物体)（背包）

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using com.xxy.entity.model;
+using com.xxy.Protocol;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -29,14 +31,16 @@ namespace com.xxy.logic.Effect
     /// </summary>
     public class Recover
     {
-        public static void RecoverSelf(Object sender, RecoverEventArgs e)
+        public static ReturnDTO RecoverSelf(Object sender, RecoverEventArgs e)
         {
             e.target.RecoverSelf(e.num);
+            return new ReturnDTO(RETURN_CODE.SUCCESS);
         }
-        public static void RecoverSelf(Object sender, EventArgs _e)
+        public static ReturnDTO RecoverSelf(Object sender, EventArgs _e)
         {
             RecoverEventArgs e = (RecoverEventArgs)_e;
             e.target.RecoverSelf(e.num);
+            return new ReturnDTO(RETURN_CODE.SUCCESS);
         }
     }
 }
