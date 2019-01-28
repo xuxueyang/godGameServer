@@ -77,13 +77,14 @@ namespace com.xxy.entity.model.BattleRoom
         {
             //TODO 进入下一个回合，将排除当前的角色进入下一个阶段
             // 先将全员设置为不可用，从剩下的设置为回合开始
-            Console.WriteLine("好啦。回合结束，让我们看看对面怎么操作的吧！~\n\n");
-
             var nextPlayers = getNoCurrentTime();
             foreach (var item in this._currentRoles)
             {
                 item.isMyTime = false;
+                Console.WriteLine(""+item.id+" 的回合结束啦");
+
             }
+            Console.WriteLine("好啦。回合结束，让我们看看对面怎么操作的吧！~\n\n");
             int max = nextPlayers.Count-1;
             var ints = new List<int>();
             while (max >= 0)
@@ -143,6 +144,7 @@ namespace com.xxy.entity.model.BattleRoom
             foreach (var first in index)
             {
                 roles[first].isMyTime = true;
+                Console.WriteLine("" + roles[first].id + " 的回合开始啦");
             }
             // 同时将这些状态设置为Battle
             var players = getCurrentTime();

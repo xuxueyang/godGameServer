@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using com.xxy.entity.Base.GameRole;
+using com.xxy.entity.Util;
 using com.xxy.logic.Base;
 using com.xxy.logic.Base.Card;
 using com.xxy.logic.Base.Skill;
@@ -13,6 +14,7 @@ namespace com.xxy.entity.model.BattleRoom
     /// </summary>
     public class RoomRole
     {
+        public string id;
         public BaseRoleAction role;
         //TODO 卡牌资源管理
         public RoleType roleType;
@@ -27,6 +29,7 @@ namespace com.xxy.entity.model.BattleRoom
         public bool isMyTime = false;
         public RoomRole(string roomId,BaseRoleAction role,RoleType roleType)
         {
+            this.id = CommonUtil.getUUID();
             this.role = role;
             this.roomId = roomId;
             this.roleType = roleType;
@@ -40,7 +43,7 @@ namespace com.xxy.entity.model.BattleRoom
         /// </summary>
         public void _solve_each_logic()
         {
-            Console.WriteLine("预处理角色中:" + this.role.ToString());
+            Console.WriteLine("预处理"+ this.id+"角色中:" + this.role.ToString());
         }
         /// <summary>
         /// 处理战斗结束的状态.玩家不能主动进入下一个状态，需要room控制
@@ -58,7 +61,7 @@ namespace com.xxy.entity.model.BattleRoom
         {
             if(!isMyTime||this.battleTimeType==BattleTimeType.OVER)
                 return;
-            Console.WriteLine("处理角色的战斗逻辑...");
+            Console.WriteLine("处理" + this.id + "角色的战斗逻辑...");
             List<BaseRoleAction> targets = new List<BaseRoleAction>();
             foreach (var item in targetRoomRoles)
             {
@@ -71,7 +74,7 @@ namespace com.xxy.entity.model.BattleRoom
                 //做一些定时任务，每次执行指令应该需要时间，或者说？立刻返回
                 // NPC应该只能调用技能。
                 //TODO 判断如果血量超过阶段，触发方法
-                Console.WriteLine("开始随机使用技能。。。");
+                Console.WriteLine("" + this.id + "开始随机使用技能。。。");
                 //TODO 从技能中随机挑选一个使用以及随机判定卡牌使用不使用
                 if (this.cardList != null && this.cardList.Count > 0)
                 {
@@ -92,7 +95,7 @@ namespace com.xxy.entity.model.BattleRoom
                 //发送回合结束的信息
                 //this.isMyTime = false;
                 this.battleTimeType = BattleTimeType.OVER;
-                Console.WriteLine("随机使用技能结束。。。");
+                Console.WriteLine("" + this.id + "随机使用技能结束。。。");
                 //TODO 发送NPC回合结束的触发
             }
             else if(roleType == RoleType.PLAYER)
