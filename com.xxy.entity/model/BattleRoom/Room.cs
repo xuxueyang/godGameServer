@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 using com.xxy.entity.Base.GameRole;
@@ -6,6 +7,7 @@ using com.xxy.entity.Util;
 using com.xxy.logic.Base;
 using com.xxy.logic.Base.Card;
 using com.xxy.Protocol.DTO.BattleRoomDTO;
+using Protocol.DTO.BattleRoomDTO;
 
 namespace com.xxy.entity.model.BattleRoom
 {
@@ -14,6 +16,8 @@ namespace com.xxy.entity.model.BattleRoom
     /// </summary>
     public class Room
     {
+        //消息队列
+        public ConcurrentQueue<RoomDTO> roomDTOs = new ConcurrentQueue<RoomDTO>();
         /// <summary>
         /// 房间ID
         /// </summary>
@@ -33,6 +37,17 @@ namespace com.xxy.entity.model.BattleRoom
         /// </summary>
         public void _timerLogic()
         {
+            //TODO 在每阵中，判断消息队列。有的话，要做处理！
+            //玩家没有回合结束的权利，只能发送自己想结束回合的请求，能不能结束等，一切，均为服务器决定
+            //客户端一定是属于触发式的。
+            //在客户端采用：发送请求（生成一个Key做唯一标识，但是相同的，比如回合结束时的key，却是和玩家id合并作为唯一)，等待一个请求回应,将回应的callback加入队列中，有回应就调用。
+            //有成功与失败的回调（应该）
+            //http socket应该有重发功能--不需要自己再实现吧
+
+            //TODO 每一帧，仅处理一个请求(请求，影响状态，但是不改变逻辑）
+            //如果是玩家使用什么技能这些，那就假如roomrole的处理队列中，然后委托他们自己处理！
+            // 客户端传来什么key，返回也是这个key
+            // kafka的源码看一下。应该就是这种生产者消费者的模型
 
             //需要执行所有角色的预处理状态(每帧，而不是每回合）
             Console.WriteLine("处理：" + this.id + " 的逻辑中...");

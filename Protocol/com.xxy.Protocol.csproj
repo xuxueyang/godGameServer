@@ -48,6 +48,7 @@
     <Compile Include="CommandProtocol\JJCMatchProtocol.cs" />
     <Compile Include="DTO\AccountInfoDTO.cs" />
     <Compile Include="DTO\BattleRoomDTO\BattleRoomDTO.cs" />
+    <Compile Include="DTO\BattleRoomDTO\RoomDTO.cs" />
     <Compile Include="DTO\ChatInfoDTO.cs" />
     <Compile Include="DTO\MainRoomDTO\FriendManagerDTO.cs" />
     <Compile Include="DTO\JJCMatchDTO.cs" />
