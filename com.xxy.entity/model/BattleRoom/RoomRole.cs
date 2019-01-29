@@ -28,7 +28,28 @@ namespace com.xxy.entity.model.BattleRoom
         /// <summary>
         /// 默认不是自己的回合
         /// </summary>
-        public bool isMyTime = false;
+        private bool isMyTime = false;
+
+        public bool IsMyTime {
+            get  { return isMyTime; }
+            set  {
+                isMyTime = value;
+                //如果我是玩家，进入我的回合
+                if (isMyTime&&roleType == RoleType.PLAYER)
+                {
+                    //打印我能用的技能
+                    foreach (var item in cardList)
+                    {
+                        Console.WriteLine("我拥有卡牌：" + item.Name + " 介绍:" + item.Description);
+                    }
+                    foreach (var item in skillList)
+                    {
+                        Console.WriteLine("我拥有技能：" + item.Name + " 介绍:" + item.Description + "消耗MP:"+item.needMp);
+                    }
+                }
+            }
+        }
+
         public RoomRole(string roomId,BaseRoleAction role,RoleType roleType)
         {
             this.id = CommonUtil.getUUID();
@@ -39,6 +60,8 @@ namespace com.xxy.entity.model.BattleRoom
             // 信息托管
             this.cardList = role.GetBaseCards();
             this.skillList = role.GetBaseSkills();
+            //TODO 如果技能和卡牌为空，那么设置一个默认的技能（搏命！每次消耗10%的最大生命值，造成其同等伤害！）
+
             //判断buff效果
             foreach (var item in buffs)
             {
@@ -49,9 +72,13 @@ namespace com.xxy.entity.model.BattleRoom
             }
         }
         /// <summary>
-        /// 处理每次判断处理的逻辑
+        /// 处理每帧判断处理的逻辑
         /// </summary>
         public void _solve_each_logic()
+        {
+
+        }
+        public void _solve_change_time_logic()
         {
             // 只会在开始的时候处理一次预处理逻辑
             if (this.battleTimeType == BattleTimeType.START)
@@ -59,7 +86,7 @@ namespace com.xxy.entity.model.BattleRoom
                 Console.WriteLine("预处理" + this.id + "角色中:" + this.role.ToString());
                 foreach (var item in buffs)
                 {
-                    if(item.buffType == BuffType.EACH_TIME_EFFECT)
+                    if (item.buffType == BuffType.EACH_TIME_EFFECT)
                     {
                         item.effect(this.role, this.role);
                     }
@@ -74,7 +101,7 @@ namespace com.xxy.entity.model.BattleRoom
         /// </summary>
         public void _solve_over_logic()
         {
-            if (!isMyTime)
+            if (!IsMyTime)
                 return;
             Console.WriteLine("回合已经结束，等待结束");
         }
@@ -83,7 +110,7 @@ namespace com.xxy.entity.model.BattleRoom
         /// </summary>
         public void _solve_battle_logic(List<RoomRole> targetRoomRoles)
         {
-            if(!isMyTime||this.battleTimeType==BattleTimeType.OVER)
+            if(!IsMyTime||this.battleTimeType==BattleTimeType.OVER)
                 return;
             // 能到我的回合，说明我还没有死！
             //依次执行，回合操作，战斗结束，死亡判断
@@ -126,6 +153,7 @@ namespace com.xxy.entity.model.BattleRoom
             {
                 //等待玩家输入指令
                 Console.WriteLine("等待玩家的输入");
+                // var str = Console.ReadLine();
             }
         }
     }

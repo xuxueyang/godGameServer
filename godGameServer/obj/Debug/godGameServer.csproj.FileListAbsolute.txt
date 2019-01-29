@@ -33,3 +33,4 @@ D:\godGameServer\godGameServer\obj\Debug\godGameServer.csproj.CoreCompileInputs.
 D:\godGameServer\godGameServer\obj\Debug\godGameServer.csproj.CopyComplete
 D:\godGameServer\godGameServer\obj\Debug\godGameServer.exe
 D:\godGameServer\godGameServer\obj\Debug\godGameServer.pdb
+D:\godGameServer\godGameServer\bin\Debug\MySql.Data.dll

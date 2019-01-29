@@ -33,7 +33,8 @@ namespace com.xxy.entity.model.BattleRoom
         /// </summary>
         public void _timerLogic()
         {
-            //需要执行所有角色的预处理状态
+
+            //需要执行所有角色的预处理状态(每帧，而不是每回合）
             Console.WriteLine("处理：" + this.id + " 的逻辑中...");
             foreach (var item in roles)
             {
@@ -53,6 +54,7 @@ namespace com.xxy.entity.model.BattleRoom
             {
                 this.battleTimeType = BattleTimeType.OVER;
             }
+            // 回合变化以及角色使用了技能，这些特殊点，需要发送网络请求！
             switch (this.battleTimeType)
             {
                 case BattleTimeType.START:
@@ -80,7 +82,7 @@ namespace com.xxy.entity.model.BattleRoom
             var nextPlayers = getNoCurrentTime();
             foreach (var item in this._currentRoles)
             {
-                item.isMyTime = false;
+                item.IsMyTime = false;
                 Console.WriteLine(""+item.id+" 的回合结束啦");
 
             }
@@ -92,6 +94,7 @@ namespace com.xxy.entity.model.BattleRoom
                 ints.Add(max--);
             }
             selectStartRole(nextPlayers, ints);
+
         }
         private List<RoomRole> _currentRoles;
         /// <summary>
@@ -103,7 +106,7 @@ namespace com.xxy.entity.model.BattleRoom
             List<RoomRole> roles = new List<RoomRole>();
             foreach (var item in this.roles)
             {
-                if (item.isMyTime) { roles.Add(item); }
+                if (item.IsMyTime) { roles.Add(item); }
             }
             return roles;
         }
@@ -112,7 +115,7 @@ namespace com.xxy.entity.model.BattleRoom
             List<RoomRole> roles = new List<RoomRole>();
             foreach (var item in this.roles)
             {
-                if (!item.isMyTime) { roles.Add(item); }
+                if (!item.IsMyTime) { roles.Add(item); }
             }
             return roles;
         }
@@ -143,7 +146,7 @@ namespace com.xxy.entity.model.BattleRoom
         {
             foreach (var first in index)
             {
-                roles[first].isMyTime = true;
+                roles[first].IsMyTime = true;
                 Console.WriteLine("" + roles[first].id + " 的回合开始啦");
             }
             // 同时将这些状态设置为Battle
@@ -154,6 +157,16 @@ namespace com.xxy.entity.model.BattleRoom
             }
             this.battleTimeType = BattleTimeType.START;
             this._currentRoles = players;
+            //处理一下换回合的逻辑
+            foreach (var item in players)
+            {
+                item._solve_change_time_logic();
+            }
+            //输出当前所有角色的状态
+            foreach (var item in players)
+            {
+                Console.WriteLine("角色:" + item.id + "的血量目前是:" + item.role.GetHp() + " " + "MP目前是:" + item.role.GetMp());
+            }
         }
     }
 }

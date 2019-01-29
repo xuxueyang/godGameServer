@@ -11,7 +11,7 @@ namespace com.xxy.logic.Base.Card
     /// </summary>
     public abstract class BaseCard
     {
-        private string id;
+        private int id;
         private string name;
         private CardSKillBattleType battleType;
         /// <summary>
@@ -44,7 +44,7 @@ namespace com.xxy.logic.Base.Card
         private bool isAvailable;
         private string imgUri;
 
-        public BaseCard(string id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
+        public BaseCard(int id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
             Dictionary<string, float> upMaterialNeed,
             string description,
             UseCard[] onUses)
@@ -67,7 +67,7 @@ namespace com.xxy.logic.Base.Card
             }
         }
 
-        public string Id { get => id; set => id = value; }
+        public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int Level { get => level; set => level = value; }
         CardSKillBattleType BattleType { get => battleType; set => battleType = value; }

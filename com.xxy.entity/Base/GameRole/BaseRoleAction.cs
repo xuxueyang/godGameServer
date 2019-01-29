@@ -8,16 +8,18 @@ namespace com.xxy.entity.Base.GameRole
 {
 
     /// <summary>
-    /// 基础的角色类，所以（包含怪物，都应该继承此类）
+    /// 基础的战斗角色类，所以（包含怪物，都应该继承此类）
     /// 血量、蓝量、动作组件（被攻击），攻击，这些、
     /// </summary>
     public  interface  BaseRoleAction
     {
         bool isDead();
         int GetHp();
+        int GetMaxHp();
         int GetMp();
         void SetHp(int hp);
         void SetMp(int mp);
+        void GetRoomId();
         /// <summary>
         /// 攻击的实现
         /// </summary>

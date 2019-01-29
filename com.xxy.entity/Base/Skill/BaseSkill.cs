@@ -7,7 +7,7 @@ namespace com.xxy.logic.Base.Skill
 {
     public class BaseSkill
     {
-        private string id;
+        private int id;
         private string name;
         private CardSKillBattleType battleType;
         /// <summary>
@@ -39,8 +39,8 @@ namespace com.xxy.logic.Base.Skill
         /// </summary>
         private bool isAvailable;
         private string imgUri;
-
-        public BaseSkill(string id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
+        public int needMp = 0;
+        public BaseSkill(int id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,int needMp,
             Dictionary<string, float> upMaterialNeed,
             string description,
             UseSkill[] onUses)
@@ -49,6 +49,7 @@ namespace com.xxy.logic.Base.Skill
             this.name = name;
             this.imgUri = imgUri;
             this.useLevel = useLevel;
+            this.needMp = needMp;
             this.level = level;
             this.maxLevel = maxLevel;
             this.canUp = canUp;
@@ -63,7 +64,7 @@ namespace com.xxy.logic.Base.Skill
             }
         }
 
-        public string Id { get => id; set => id = value; }
+        public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public int Level { get => level; set => level = value; }
         CardSKillBattleType BattleType { get => battleType; set => battleType = value; }

@@ -15,7 +15,7 @@ namespace com.xxy.logic.Factory
         /// <returns></returns>
         public BaseCard getConsumableRecoverCardTemplate()
         {
-            ConsumableCard consumable = new ConsumableCard(1, "id", "name", "imgUri", 0, 0, 0, true, null, "message", new UseCard[] { Recover.RecoverSelf });
+            ConsumableCard consumable = new ConsumableCard(1, 2, "name", "imgUri", 0, 0, 0, true, null, "message", new UseCard[] { Recover.RecoverSelf });
             return consumable;
         }
 

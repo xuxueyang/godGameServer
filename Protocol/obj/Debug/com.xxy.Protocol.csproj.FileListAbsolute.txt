@@ -8,3 +8,5 @@ D:\godGameClient\Assets\Plugins\com.xxy.Protocol.pdb
 D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.csproj.CoreCompileInputs.cache
 D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.dll
 D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.pdb
+D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.csprojAssemblyReference.cache
+D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.csproj.CopyComplete

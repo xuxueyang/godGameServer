@@ -1,4 +1,5 @@
 using com.xxy.entity.Base.GameRole;
+using com.xxy.entity.Base.Skill;
 using com.xxy.entity.model;
 using com.xxy.logic.Base.Card;
 using com.xxy.logic.Base.Errors;
@@ -28,20 +29,7 @@ namespace com.xxy.logic.Base.Skill.demo
         public BaseSkill getDamangeSkill(int number)
         {
             //还要消耗栏
-            UseSkill cardEffect1 = (sender, args) =>
-            {
-                BaseRoleAction baseRole = (BaseRoleAction)sender;
-                if (baseRole.GetMp() >= number)
-                {
-                    baseRole.SetMp(baseRole.GetMp() - number);
-                    return new ReturnDTO(RETURN_CODE.SUCCESS);
-                }
-                else
-                {   //打断
-                    Console.WriteLine("法力值不足");
-                    return new ReturnDTO(RETURN_CODE.BATTLE_HAS_NO_MP);
-                }    
-            };
+            UseSkill cardEffect1 = CommonSkillFactory.checkMpIsEnough(number);
             UseSkill cardEffect2 = (sender, args) =>
             {
                 List<BaseRoleAction> baseRoles = ((UseSkillEventArgs)args).targets;
@@ -52,7 +40,7 @@ namespace com.xxy.logic.Base.Skill.demo
                 return new ReturnDTO(RETURN_CODE.SUCCESS);
 
             };
-            BaseSkill card = new BaseSkill("1","炫酷火球","",1,1,1,false,null,
+            BaseSkill card = new BaseSkill(1,"炫酷火球","",1,1,1,false, number,null,
                 "你不觉得火球作为demo很炫酷吗", new UseSkill[]{cardEffect1, cardEffect2});
             card.IsAvailable = true;
             return card;               
@@ -86,7 +74,7 @@ namespace com.xxy.logic.Base.Skill.demo
                 baseRole.SetHp(baseRole.GetHp()+number);
                 return new ReturnDTO(RETURN_CODE.SUCCESS);
             };
-            BaseSkill card = new BaseSkill("1", "回复术", "",1,1,1,false,null,
+            BaseSkill card = new BaseSkill(2, "回复术", "",1,1,1,false, number,null,
                 "没有什么是钱解决不了的问题", new UseSkill[]{ cardEffect1 , cardEffect2});
             card.IsAvailable = true;
             return card;   

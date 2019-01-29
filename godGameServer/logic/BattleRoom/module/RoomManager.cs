@@ -25,7 +25,7 @@ namespace godGameServer.logic.BattleRoom.module
         Timer timer;
         public RoomManager()
         {
-            Room room = RoomFactory.Instance.createDemoOneNPCRoom();
+            Room room = RoomFactory.Instance.createDemoTwoNPCRoom();
             start(room);
             timer = new Timer(2000);
             timer.Elapsed += _timer;

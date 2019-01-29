@@ -11,7 +11,7 @@ namespace com.xxy.logic.Base.Card
 
         public int UseCount { get => useCount; set => useCount = value; }
 
-        public ConsumableCard(int useCount, string id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
+        public ConsumableCard(int useCount, int id, string name, string imgUri, int useLevel, int level, int maxLevel, bool canUp,
             Dictionary<string, float> upMaterialNeed,string message, UseCard[] onUses) 
             : base(id,name,imgUri,useLevel,level,maxLevel,canUp,upMaterialNeed, message,onUses)
         {

@@ -33,7 +33,7 @@ namespace com.xxy.logic.Base.Card.demo
                 baseRole.SetHp(baseRole.GetHp()-number);
                 return new ReturnDTO(RETURN_CODE.SUCCESS);
             };
-            PermanentCard card = new PermanentCard("1","炫酷火球","",1,1,1,false,null,
+            PermanentCard card = new PermanentCard(1,"炫酷火球","",1,1,1,false,null,
                 "你不觉得火球作为demo很炫酷吗", new UseCard[]{cardEffect});
             card.IsAvailable = true;
             return card;
@@ -52,7 +52,7 @@ namespace com.xxy.logic.Base.Card.demo
                 baseRole.SetHp(baseRole.GetHp()+number);
                 return new ReturnDTO(RETURN_CODE.SUCCESS);
             };
-            PermanentCard card = new PermanentCard("2","回复术","",1,1,1,false,null,
+            PermanentCard card = new PermanentCard(2,"回复术","",1,1,1,false,null,
                 "没有什么是钱解决不了的问题", new UseCard[]{cardEffect});
             card.IsAvailable = true;
             return card;   
