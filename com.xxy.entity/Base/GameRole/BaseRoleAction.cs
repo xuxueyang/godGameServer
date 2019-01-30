@@ -16,6 +16,7 @@ namespace com.xxy.entity.Base.GameRole
         bool isDead();
         int GetHp();
         int GetMaxHp();
+        int GetMaxMp();
         int GetMp();
         void SetHp(int hp);
         void SetMp(int mp);

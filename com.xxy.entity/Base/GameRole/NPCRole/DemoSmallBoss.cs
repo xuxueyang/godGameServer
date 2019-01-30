@@ -15,6 +15,8 @@ namespace com.xxy.entity.Base.GameRole.NPCRole
         {
             this.hp = 100;
             this.mp = 200;
+            this.maxhp = 100;
+            this.maxmp = 200;
         }
         public bool _isDead = false;
         public bool isDead()
@@ -86,6 +88,21 @@ namespace com.xxy.entity.Base.GameRole.NPCRole
         public List<BaseCard> GetBaseCards()
         {
             return this.BaseCards;
+        }
+
+        public int GetMaxHp()
+        {
+            return this.maxhp;
+        }
+
+        public void GetRoomId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMaxMp()
+        {
+            return this.maxmp;
         }
     }
 }
