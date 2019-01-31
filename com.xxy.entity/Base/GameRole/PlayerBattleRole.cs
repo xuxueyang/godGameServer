@@ -75,5 +75,20 @@ namespace com.xxy.entity.Base.GameRole
         {
             throw new NotImplementedException();
         }
+
+        public int GetMaxHp()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMaxMp()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetRoomId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

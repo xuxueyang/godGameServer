@@ -6,7 +6,10 @@ using com.xxy.entity.Base.GameRole;
 using com.xxy.entity.Util;
 using com.xxy.logic.Base;
 using com.xxy.logic.Base.Card;
+using com.xxy.Protocol;
 using com.xxy.Protocol.DTO.BattleRoomDTO;
+using godGameServer.logic.BattleRoom.module;
+using Protocol.CommandProtocol;
 using Protocol.DTO.BattleRoomDTO;
 
 namespace com.xxy.entity.model.BattleRoom
@@ -23,12 +26,14 @@ namespace com.xxy.entity.model.BattleRoom
         /// </summary>
         public string id;
         public RoomType roomType;
-        private BattleTimeType battleTimeType = BattleTimeType.START;
+        private RoomMessageManaer messageManaer;
+        public BattleTimeType battleTimeType = BattleTimeType._PRE_START;
         public List<RoomRole> roles = new List<RoomRole>();
 
-        public Room(RoomType roomType)
+        public Room(RoomType roomType, RoomMessageManaer messageManaer)
         {
             this.id = CommonUtil.getUUID();
+            this.messageManaer = messageManaer;
             this.roomType = roomType;
         }
 
@@ -45,10 +50,18 @@ namespace com.xxy.entity.model.BattleRoom
             //http socket应该有重发功能--不需要自己再实现吧
 
             //TODO 每一帧，仅处理一个请求(请求，影响状态，但是不改变逻辑）
+            //处理看有没有特殊的逻辑
+            //TODO 如果第一个逻辑不是自己需要的，那么移除。（一个消息仅仅仅仅可以呗消耗一次）
+            //_checkMessageSpecialLogic();
             //如果是玩家使用什么技能这些，那就假如roomrole的处理队列中，然后委托他们自己处理！
             // 客户端传来什么key，返回也是这个key
             // kafka的源码看一下。应该就是这种生产者消费者的模型
-
+            var result = new RoomDTO();
+            var success = roomDTOs.TryDequeue(out result);
+            if (success)
+            {
+                _solve_message_dto(result);
+            }
             //需要执行所有角色的预处理状态(每帧，而不是每回合）
             Console.WriteLine("处理：" + this.id + " 的逻辑中...");
             foreach (var item in roles)
@@ -90,6 +103,66 @@ namespace com.xxy.entity.model.BattleRoom
                     break;
             }
         }
+
+        private void _solve_message_dto(RoomDTO result)
+        {
+            //收到信息的处理
+            //设置room的_wantToUseCardSkill，作为消费
+            switch (result.protocol)
+            {
+                case BattleRoomProtocol.USE_CARD_C:
+                    //玩家使用来技能，针对那个对象等
+                    {
+                        UseCardEventArgs args = new UseCardEventArgs();
+                        args.UseCardId = (long)result.map[CommonFieldProtocol.useCardId];
+                        var targetIds = (List<string>)result.map[CommonFieldProtocol.targetIds];
+                        args.targets = getRolesByIds(targetIds);
+                        var role = getRoomRoleById(result.roomRoleId);
+                        role._wantToUseCardSkill = args;
+                    }
+                    break;
+                case BattleRoomProtocol.USE_SKILL_C:
+                    //玩家使用来技能，针对某个对象
+
+                    break;
+                case BattleRoomProtocol.OVER_TIME_C:
+                    ///TODO 结束战斗回合
+                    {
+                        if (result.map.ContainsKey(CommonFieldProtocol.id))
+                        {
+                            var id = result.map[CommonFieldProtocol.id].ToString();
+                            var role = getRoomRoleById(id);
+                            if (role != null)
+                            {
+                                role.IsMyTime = false;
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+        private List<BaseRoleAction> getRolesByIds(List<string> targetIds)
+        {
+            List<BaseRoleAction> list = new List<BaseRoleAction>();
+            foreach (var targetItem in targetIds)
+            {
+                foreach (var roleItem in this.roles)
+                {
+                    if (targetItem.Equals(roleItem.id))
+                    {
+                        list.Add(roleItem.role);
+                    }
+                }
+            }
+            return list;
+        }
+
+        public void receiveMessage(int protocol, RoomDTO battleRoomDTO)
+        {
+            battleRoomDTO.protocol = protocol;
+            this.roomDTOs.Enqueue(battleRoomDTO);
+        }
+
         private void nextTime()
         {
             //TODO 进入下一个回合，将排除当前的角色进入下一个阶段
@@ -134,6 +207,17 @@ namespace com.xxy.entity.model.BattleRoom
             }
             return roles;
         }
+        public RoomRole getRoomRoleById(string id)
+        {
+            foreach (var item in roles)
+            {
+                if (item.id.Equals(id))
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
         public List<RoomRole> getAllPlayer()
         {
             List<RoomRole> roles = new List<RoomRole>();
@@ -159,6 +243,10 @@ namespace com.xxy.entity.model.BattleRoom
         }
         public void selectStartRole(List<RoomRole> roles, List<int> index)
         {
+            if(battleTimeType == BattleTimeType._PRE_START)
+            {
+                throw new Exception("房间未初始化！");
+            }
             foreach (var first in index)
             {
                 roles[first].IsMyTime = true;
@@ -178,10 +266,24 @@ namespace com.xxy.entity.model.BattleRoom
                 item._solve_change_time_logic();
             }
             //输出当前所有角色的状态
+            List<string> ids = new List<string>();
             foreach (var item in players)
             {
+                ids.Add(item.id);
                 Console.WriteLine("角色:" + item.id + "的血量目前是:" + item.role.GetHp() + " " + "MP目前是:" + item.role.GetMp());
             }
+            // 通知 房间里所有的角色，切换到哪些人的回合了（！逻辑是在服务器处理，客户端仅仅做显示，非逻辑判断和接受传输操作API）
+            RoomDTO dto = new RoomDTO();
+            dto.map.Add(CommonFieldProtocol.ids,ids);
+            foreach (var item in getAllPlayer())
+            {
+                _write(item.accontId, BattleRoomProtocol.OVER_TIME_S, new ReturnDTO(RETURN_CODE.SUCCESS, dto));
+            }
+        }
+
+        public void _write(long accontId, int commend, ReturnDTO returnDTO)
+        {
+            messageManaer.write(accontId, commend, returnDTO);
         }
     }
 }

@@ -9,6 +9,7 @@ using com.xxy.Protocol.DTO.BattleRoomDTO;
 using godGameServer.logic.BattleRoom.module;
 using godGameServer.tool;
 using Protocol.CommandProtocol;
+using Protocol.DTO.BattleRoomDTO;
 
 namespace godGameServer.logic.BattleRoom
 {
@@ -41,24 +42,20 @@ namespace godGameServer.logic.BattleRoom
 
         void HandlerInterface.MessageReceive(UserToken token, SocketModel message)
         {
-            //收到信息的处理
             switch (message.command)
             {
                 case BattleRoomProtocol.CREATE_ONE_C:
                     // 创建战斗房间，需要战斗人员们的ID，从ID获取到配置的技能信息，初始化玩家的卡牌、技能、血量、MP等数据
                     // 创建怪物ID，做一个定时器，每回合调用。
-                    roomManager.createOneRoom(new List<UserToken>() { token});
+                    roomManager.createOneRoom(new List<UserToken>() { token });
                     break;
-                case BattleRoomProtocol.USE_CARD_C:
-                    //玩家使用来技能，针对那个对象等
-                    var room = roomManager.GetRoomById(message.getMessage<BattleRoomDTO>().roomId);
-                    // TODO room.useCard(message.getMessage<BattleRoomDTO>());
-                    break;
-                case BattleRoomProtocol.USE_SKILL_C:
-                    //玩家使用来技能，针对某个对象
-                    break;
-                case BattleRoomProtocol.OVER_TIME_C:
-                    ///TODO 结束战斗回合
+                default:
+                    {
+                        //将消息转发到处理房间。
+                        var room = roomManager.GetRoomById(message.getMessage<RoomDTO>().roomId);
+                        // TODO room.useCard(message.getMessage<BattleRoomDTO>());
+                        room.receiveMessage(BattleRoomProtocol.USE_CARD_C, message.getMessage<RoomDTO>());
+                    }
                     break;
             }
         }

@@ -6,6 +6,7 @@ using godGameServer.logic.mainRoom;
 using godGameServer.logic.JJCMatch;
 using godGameServer.logic.BattleRoom;
 using com.xxy.Protocol;
+using System;
 
 namespace godGameServer
 {
@@ -25,6 +26,7 @@ namespace godGameServer
 
         public override void ClientClose(UserToken token, string error)
         {
+            Console.WriteLine(token);
             battleRoom.ClientClose(token, error);
             jjcmatch.ClientClose(token, error);
             mainRoom.ClientClose(token, error);
@@ -33,6 +35,7 @@ namespace godGameServer
 
         public override void ClientConnect(UserToken token)
         {
+            Console.WriteLine(token);
             battleRoom.ClientConnect(token);
             mainRoom.ClientConnect(token);
             login.ClientConnect(token);
@@ -40,6 +43,7 @@ namespace godGameServer
 
         public override void MessageReceive(UserToken token, object message)
         {
+            Console.WriteLine(message);
             SocketModel model = message as SocketModel;
             switch (model.type)
             {

@@ -24,7 +24,10 @@ namespace godGameServer.cache
         /// 缓存连接与用户名
         /// </summary>
         Dictionary<UserToken, string>  tokenMap= new Dictionary<UserToken, string>();
-
+        public AccountCache()
+        {
+            createAccount("admin", "admin");
+        }
 
         public void createAccount(string account, string password)
         {

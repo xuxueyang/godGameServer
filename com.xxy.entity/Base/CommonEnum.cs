@@ -5,6 +5,7 @@ namespace com.xxy.logic.Base
     /// </summary>
     public enum BattleTimeType
     {
+        _PRE_START,
         START,//开始阶段
         PRE,//准备阶段
         BATTLE,//战斗阶段

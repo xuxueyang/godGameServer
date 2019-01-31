@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Protocol.CommandProtocol
 {
+
     public class BattleRoomProtocol
     {
         //public const int CREATE_ERROR_S = -1;//创建房间失败
@@ -27,5 +28,7 @@ namespace Protocol.CommandProtocol
 
         public const int NPC_USE_CARD = 210;//npc使用卡牌
         public const int NPC_USE_SKILL = 211;//npc使用技能
+
+        public const int START_TIME_S = 301;//战斗开始
     }
 }

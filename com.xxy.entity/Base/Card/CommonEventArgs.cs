@@ -8,10 +8,13 @@ namespace com.xxy.logic.Base.Card
     public class UseCardEventArgs:EventArgs
     {
         public List<BaseRoleAction> targets;
+        public long UseCardId;
+        //public 
     }
     public class UseSkillEventArgs:EventArgs
     {
         public List<BaseRoleAction> targets;
+        public long UseSkillId;
     }
     /// <summary>
     /// 使用卡牌的实现效果

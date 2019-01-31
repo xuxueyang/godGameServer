@@ -17,6 +17,7 @@ namespace com.xxy.entity.model.BattleRoom
     {
         public string id;
         public BaseRoleAction role;
+        public long accontId;
         //TODO 卡牌资源管理
         public RoleType roleType;
         public List<BaseBuff> buffs = new List<BaseBuff>();
@@ -24,6 +25,9 @@ namespace com.xxy.entity.model.BattleRoom
         //TODO 技能资源管理
         public List<BaseSkill> skillList = new List<BaseSkill>();
         public BattleTimeType battleTimeType = BattleTimeType.OVER;
+
+        public object _wantToUseCardSkill = null;
+
         public string roomId;
         /// <summary>
         /// 默认不是自己的回合
@@ -49,9 +53,17 @@ namespace com.xxy.entity.model.BattleRoom
                 }
             }
         }
-
-        public RoomRole(string roomId,BaseRoleAction role,RoleType roleType)
+        public RoomRole(string roomId, BaseRoleAction role, RoleType roleType)
         {
+            _init(roomId, -1, role, roleType);
+        }
+        public RoomRole(string roomId, long accontId, BaseRoleAction role, RoleType roleType)
+        {
+            _init(roomId, accontId, role, roleType);
+        }
+        private void _init(string roomId, long accontId, BaseRoleAction role, RoleType roleType)
+        {
+            this.accontId = accontId;
             this.id = CommonUtil.getUUID();
             this.role = role;
             this.roomId = roomId;
@@ -65,12 +77,13 @@ namespace com.xxy.entity.model.BattleRoom
             //判断buff效果
             foreach (var item in buffs)
             {
-                if(item.buffType == BuffType.ONE_EFFECT)
+                if (item.buffType == BuffType.ONE_EFFECT)
                 {
                     item.effect(this.role, this.role);
                 }
             }
         }
+
         /// <summary>
         /// 处理每帧判断处理的逻辑
         /// </summary>
@@ -93,6 +106,7 @@ namespace com.xxy.entity.model.BattleRoom
                 }
                 // TODO 技能分为一些范围，一些技能（状态与buff，是提前设定的，有些buff是战斗中，有些是）
                 // TODO 所以设定为，就在角色身上？还是进本获取？
+                this._wantToUseCardSkill = null; //(抛弃队列)
                 this.battleTimeType = BattleTimeType.PRE;
             }
         }
@@ -108,7 +122,7 @@ namespace com.xxy.entity.model.BattleRoom
         /// <summary>
         /// 定时处理战斗逻辑
         /// </summary>
-        public void _solve_battle_logic(List<RoomRole> targetRoomRoles)
+        public void _solve_battle_logic(List<RoomRole> targetNoCurrentTimeRoomRoles)
         {
             if(!IsMyTime||this.battleTimeType==BattleTimeType.OVER)
                 return;
@@ -118,7 +132,8 @@ namespace com.xxy.entity.model.BattleRoom
             {
                 Console.WriteLine("处理" + this.id + "角色的战斗逻辑...");
                 List<BaseRoleAction> targets = new List<BaseRoleAction>();
-                foreach (var item in targetRoomRoles)
+                //TODO需要删选，不能aoe呀
+                foreach (var item in targetNoCurrentTimeRoomRoles)
                 {
                     targets.Add(item.role);
                 }
@@ -152,8 +167,52 @@ namespace com.xxy.entity.model.BattleRoom
             else if(roleType == RoleType.PLAYER)
             {
                 //等待玩家输入指令
-                Console.WriteLine("等待玩家的输入");
+                //Console.WriteLine("等待玩家的输入");
                 // var str = Console.ReadLine();
+                // 说明输入了使用技能或卡牌
+                if (_wantToUseCardSkill != null)
+                {
+                    if(_wantToUseCardSkill is UseCardEventArgs)
+                    {
+                        var args = (UseCardEventArgs)_wantToUseCardSkill;
+                        BaseCard useCard = null;
+                        if (this.cardList != null && this.cardList.Count > 0)
+                        {
+                            foreach (var item in this.cardList)
+                            {
+
+                                if(item.Id == args.UseCardId)
+                                {
+                                    useCard = item;
+                                    break;
+                                }
+                            }
+                            if(useCard!=null)
+                                useCard.useCard(this.role, args);
+                        } 
+                    }
+                    else if(_wantToUseCardSkill is UseSkillEventArgs)
+                    {
+                        var args = (UseSkillEventArgs)_wantToUseCardSkill;
+                        BaseSkill baseSkill = null;
+                        if (this.skillList != null && this.skillList.Count > 0)
+                        {
+                            foreach (var item in this.skillList)
+                            {
+
+                                if (item.Id == args.UseSkillId)
+                                {
+                                    baseSkill = item;
+                                    break;
+                                }
+                            }
+                            if (baseSkill != null)
+                                baseSkill.useSkill(this.role, args);
+                        }
+                    }
+                    //找不到的话，丢弃
+                    this._wantToUseCardSkill = null;
+                }
             }
         }
     }

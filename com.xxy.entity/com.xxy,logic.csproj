@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -65,8 +67,6 @@
     <Compile Include="Effect\Recover.cs" />
     <Compile Include="Base\Errors\BaseError.cs" />
     <Compile Include="model\AccountModel.cs" />
-    <Compile Include="model\BattleRoom\Room.cs" />
-    <Compile Include="model\BattleRoom\RoomRole.cs" />
     <Compile Include="model\GameModel.cs" />
     <Compile Include="model\ReturnDTO.cs" />
     <Compile Include="model\RoleModel.cs" />

@@ -1,11 +1,11 @@
 namespace com.xxy.Protocol.DTO.BattleRoomDTO
 {
-    public enum UseType
+    enum UseType
     {
         Card,
         Skill
     }
-    public class BattleRoomDTO
+    class BattleRoomDTO
     {
         public string roomId;
         public string targetId;//对象
