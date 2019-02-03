@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>godGameServer</RootNamespace>
     <AssemblyName>godGameServer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -102,6 +102,10 @@
     <ProjectReference Include="..\com.xxy.entity\com.xxy,logic.csproj">
       <Project>{2EAA306F-E34E-4373-A7AE-C14892189A70}</Project>
       <Name>com.xxy,logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\com.xxy.logic2\com.xxy.logic2.csproj">
+      <Project>{afab2b4c-7aad-4572-beeb-fbadd9e9f0da}</Project>
+      <Name>com.xxy.logic2</Name>
     </ProjectReference>
     <ProjectReference Include="..\com.xxy.NetFrame\com.xxy.NetFrame.csproj">
       <Project>{26754EB8-C2A9-43BE-81C8-F1844E47B2BE}</Project>
