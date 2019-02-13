@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.xxy.entity.model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -84,15 +85,23 @@ namespace com.xxy.logic.Base.Card
         {
             if (this.IsAvailable)
             {
-                foreach (var item in _useCard)
+                if (this._useCard != null && this._useCard.Count > 0)
                 {
-                    item(sender, e);
-                    Console.WriteLine("使用了" + this.name + ",描述：" + this.description);
+                    foreach (var item in this._useCard)
+                    {
+                        ReturnDTO success = item(sender, e);
+                        if (success.hasError)
+                        {
+                            break;
+                        }
+                    }
                 }
+                Console.WriteLine("使用了" + this.name + ",描述：" + this.description);
             }
             else
             {
                 // throw new BaseError("","");
+                Console.WriteLine("error:卡牌不可使用");
             }
         }
 

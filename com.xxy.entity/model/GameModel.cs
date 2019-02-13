@@ -21,6 +21,8 @@ namespace com.xxy.entity.model
         {
             this.roleId = roleId;
             this.accountId = accountId;
+            //TODO 初始化一个游戏角色模型！
+            this.baseRole = new PlayerBattleRole();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace com.xxy.entity.model
 {
+    [Serializable]
     /// <summary>
     /// 内部处理的消息体
     /// </summary>

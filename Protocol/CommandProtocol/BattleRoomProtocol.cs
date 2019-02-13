@@ -30,5 +30,7 @@ namespace Protocol.CommandProtocol
         public const int NPC_USE_SKILL = 211;//npc使用技能
 
         public const int START_TIME_S = 301;//战斗开始
+
+        public const int OVER_GAME_S = 701;//游戏结束
     }
 }

@@ -40,7 +40,7 @@ namespace godGameServer.logic.BattleRoom.module
         public Room createOneRoom(RoleModel roleModel)
         {
             Room room = new Room(RoomType.ONE_NPC_ROOM, new RoomMessageManaer());
-            List<RoomRole> roles = room.roles;
+            List<RoomRole> roles = new List<RoomRole>();
             roles.Add(RoomRoleFactory.Instance.getDemoSmallBoss());
             roles.Add(RoomRoleFactory.Instance.createPlayerRoleByModel(roleModel));
             room.roles = roles;

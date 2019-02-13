@@ -15,8 +15,10 @@ namespace godGameServer.biz
         public readonly static IBattleRoomBiz battleRoomBiz;
         static BizFactory()
         {
-            accountBiz = new AccountBiz();
+            // 有顺序！
             roleBiz = new RoleBiz();
+            accountBiz = new AccountBiz();
+          
             battleRoomBiz = new BattleRoomBiz();
         }
     }

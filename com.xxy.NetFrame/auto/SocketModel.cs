@@ -1,5 +1,7 @@
-﻿namespace com.xxy.NetFrame.auto
+﻿using System;
+namespace com.xxy.NetFrame.auto
 {
+    [Serializable]
     public  class SocketModel
     {
         /// <summary>

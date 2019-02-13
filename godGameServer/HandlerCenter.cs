@@ -43,7 +43,7 @@ namespace godGameServer
 
         public override void MessageReceive(UserToken token, object message)
         {
-            Console.WriteLine(message);
+            Console.WriteLine("ces:"+message);
             SocketModel model = message as SocketModel;
             switch (model.type)
             {

@@ -96,6 +96,7 @@ namespace com.xxy.logic.Base.Skill
             }
             else
             {
+                Console.WriteLine("error:卡牌不可使用");
                 // throw new BaseError("","");
             }
         }

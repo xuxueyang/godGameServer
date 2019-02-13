@@ -1,3 +1,5 @@
+using System;
+
 namespace com.xxy.Protocol.DTO.BattleRoomDTO
 {
     enum UseType

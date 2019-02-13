@@ -113,17 +113,27 @@ namespace com.xxy.entity.model.BattleRoom
                 case BattleRoomProtocol.USE_CARD_C:
                     //玩家使用来技能，针对那个对象等
                     {
-                        UseCardEventArgs args = new UseCardEventArgs();
-                        args.UseCardId = (long)result.map[CommonFieldProtocol.useCardId];
-                        var targetIds = (List<string>)result.map[CommonFieldProtocol.targetIds];
-                        args.targets = getRolesByIds(targetIds);
-                        var role = getRoomRoleById(result.roomRoleId);
-                        role._wantToUseCardSkill = args;
+                        Console.WriteLine("玩家房间角色：" + result.roomRoleId + "使用了卡牌");
+                        try
+                        {
+                            UseCardEventArgs args = new UseCardEventArgs();
+                            args.UseCardId = (int)result.map[CommonFieldProtocol.useCardId];
+                            var targetIds = (List<string>)result.map[CommonFieldProtocol.targetIds];
+                            args.targets = getRolesByIds(targetIds);
+                            var role = getRoomRoleById(result.roomRoleId);
+                            role._wantToUseCardSkill = args;
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                     break;
                 case BattleRoomProtocol.USE_SKILL_C:
                     //玩家使用来技能，针对某个对象
-
+                    {
+                        Console.WriteLine("玩家房间角色：" + result.roomRoleId + "使用了技能");
+                    }
                     break;
                 case BattleRoomProtocol.OVER_TIME_C:
                     ///TODO 结束战斗回合

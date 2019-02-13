@@ -43,8 +43,11 @@ namespace godGameServer.logic.BattleRoom.module
             PlayerBattleRole role = new PlayerBattleRole();
             role.SetHp(roleModel.gameModel.baseRole.GetHp());
             role.SetMp(roleModel.gameModel.baseRole.GetMp());
-            
-            return new RoomRole(CommonUtil.getUUID(), role, RoleType.PLAYER);
+            role.GetBaseCards().Add(DemoCardFactory.Instance.getDamangeCard(30));
+            role.GetBaseCards().Add(DemoCardFactory.Instance.getRecoverCard(20));
+            role.GetBaseSkills().Add(DemoSkillFactory.Instance.getDamangeSkill(30));
+            role.GetBaseSkills().Add(DemoSkillFactory.Instance.getRecoverSkill(20));
+            return new RoomRole(CommonUtil.getUUID(), roleModel.accountId,role, RoleType.PLAYER);
         }
     }
 }

@@ -20,13 +20,13 @@ namespace com.xxy.entity.Base.GameRole
         int GetMp();
         void SetHp(int hp);
         void SetMp(int mp);
-        void GetRoomId();
+        //void GetRoomId();
         /// <summary>
         /// 攻击的实现
         /// </summary>
         void attack(CallBack callBack);
-        void UseCard();
-        void UseSkill();
+        //void UseCard();
+        //void UseSkill();
         List<BaseSkill> GetBaseSkills();
         List<BaseCard> GetBaseCards();
         /// <summary>

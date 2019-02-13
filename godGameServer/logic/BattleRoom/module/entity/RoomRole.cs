@@ -130,7 +130,7 @@ namespace com.xxy.entity.model.BattleRoom
             //依次执行，回合操作，战斗结束，死亡判断
             if (roleType == RoleType.NPC)
             {
-                Console.WriteLine("处理" + this.id + "角色的战斗逻辑...");
+                Console.WriteLine("处理NPC:" + this.id + "角色的战斗逻辑...");
                 List<BaseRoleAction> targets = new List<BaseRoleAction>();
                 //TODO需要删选，不能aoe呀
                 foreach (var item in targetNoCurrentTimeRoomRoles)
@@ -167,52 +167,69 @@ namespace com.xxy.entity.model.BattleRoom
             else if(roleType == RoleType.PLAYER)
             {
                 //等待玩家输入指令
-                //Console.WriteLine("等待玩家的输入");
+                Console.WriteLine("等待"+ this.id +"玩家的输入");
                 // var str = Console.ReadLine();
                 // 说明输入了使用技能或卡牌
                 if (_wantToUseCardSkill != null)
                 {
-                    if(_wantToUseCardSkill is UseCardEventArgs)
+                    lock (_wantToUseCardSkill)
                     {
-                        var args = (UseCardEventArgs)_wantToUseCardSkill;
-                        BaseCard useCard = null;
-                        if (this.cardList != null && this.cardList.Count > 0)
+                        if (_wantToUseCardSkill is UseCardEventArgs)
                         {
-                            foreach (var item in this.cardList)
+                            var args = (UseCardEventArgs)_wantToUseCardSkill;
+                            BaseCard useCard = null;
+                            if (this.cardList != null && this.cardList.Count > 0)
                             {
-
-                                if(item.Id == args.UseCardId)
+                                foreach (var item in this.cardList)
                                 {
-                                    useCard = item;
-                                    break;
-                                }
-                            }
-                            if(useCard!=null)
-                                useCard.useCard(this.role, args);
-                        } 
-                    }
-                    else if(_wantToUseCardSkill is UseSkillEventArgs)
-                    {
-                        var args = (UseSkillEventArgs)_wantToUseCardSkill;
-                        BaseSkill baseSkill = null;
-                        if (this.skillList != null && this.skillList.Count > 0)
-                        {
-                            foreach (var item in this.skillList)
-                            {
 
-                                if (item.Id == args.UseSkillId)
-                                {
-                                    baseSkill = item;
-                                    break;
+                                    if (item.Id == args.UseCardId)
+                                    {
+                                        useCard = item;
+                                        break;
+                                    }
                                 }
+                                if (useCard != null)
+                                {
+                                    UseCardEventArgs newargs = new UseCardEventArgs();
+                                    newargs.targets = args.targets;
+                                    newargs.UseCardId = args.UseCardId;
+                                    useCard.useCard(this.role, newargs);
+                                }
+                                    
                             }
-                            if (baseSkill != null)
-                                baseSkill.useSkill(this.role, args);
                         }
+                        else if (_wantToUseCardSkill is UseSkillEventArgs)
+                        {
+                            var args = (UseSkillEventArgs)_wantToUseCardSkill;
+                            BaseSkill baseSkill = null;
+                            if (this.skillList != null && this.skillList.Count > 0)
+                            {
+                                foreach (var item in this.skillList)
+                                {
+
+                                    if (item.Id == args.UseSkillId)
+                                    {
+                                        baseSkill = item;
+                                        break;
+                                    }
+                                }
+                                if (baseSkill != null)
+                                {
+                                    UseSkillEventArgs newargs = new UseSkillEventArgs();
+                                    newargs.targets = args.targets;
+                                    newargs.UseSkillId = args.UseSkillId;
+                                    baseSkill.useSkill(this.role, newargs);
+                                }                                  
+                            }
+                        }
+                        //找不到的话，丢弃
+                        this._wantToUseCardSkill = null;
                     }
-                    //找不到的话，丢弃
-                    this._wantToUseCardSkill = null;
+                   
                 }
+
+              
             }
         }
     }

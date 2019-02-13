@@ -9,7 +9,7 @@ namespace com.xxy.entity.Base.GameRole
     /// <summary>
     /// 战斗时的玩家角色
     /// </summary>
-    public class PlayerBattleRole:BaseRoleAction
+    public class PlayerBattleRole: BaseRoleData,BaseRoleAction
     {
         public bool _isDead = false;
         public bool isDead()
@@ -18,22 +18,25 @@ namespace com.xxy.entity.Base.GameRole
         }
         public int GetHp()
         {
-            throw new NotImplementedException();
+            return this.hp;
         }
 
         public int GetMp()
         {
-            throw new NotImplementedException();
+            return this.mp;
         }
 
         public void SetHp(int hp)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("change:生命值变化,从" + this.hp + " 变化到 " + (hp < this.maxhp ? hp : this.maxmp));
+            this.hp = hp < this.maxhp ? hp : this.maxmp;
+            
+
         }
 
         public void SetMp(int mp)
         {
-            throw new NotImplementedException();
+            this.mp = mp<=this.maxmp?mp:this.maxmp;
         }
 
         public void attack(CallBack callBack)
@@ -48,47 +51,36 @@ namespace com.xxy.entity.Base.GameRole
 
         public void dead(CallBack callBack)
         {
+            //TODO委托与广播，在每次操作后，注册事件
             throw new NotImplementedException();
         }
 
         public RoleType getRoleType()
         {
-            throw new NotImplementedException();
+            return RoleType.PLAYER;
         }
 
-        public void UseCard()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UseSkill()
-        {
-            throw new NotImplementedException();
-        }
 
         public List<BaseSkill> GetBaseSkills()
         {
-            throw new NotImplementedException();
+            return this.BaseSkills;
         }
 
         public List<BaseCard> GetBaseCards()
         {
-            throw new NotImplementedException();
+            return this.BaseCards;
         }
 
         public int GetMaxHp()
         {
-            throw new NotImplementedException();
+            return this.maxhp;
         }
 
         public int GetMaxMp()
         {
-            throw new NotImplementedException();
+            return this.maxmp;
         }
 
-        public void GetRoomId()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

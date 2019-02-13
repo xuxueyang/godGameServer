@@ -14,10 +14,11 @@ namespace godGameServer.biz
     public class AccountBiz : IAccountBiz
     {
         private IAccountCache accountCache = CacheFactory.accountCache;
-
+        private IRoleBiz roleBiz = BizFactory.roleBiz;
         public void close(UserToken token)
         {
             accountCache.offline(token);
+            roleBiz.offline(token);
         }
 
         public ReturnDTO create(UserToken token, string account, string password)
@@ -47,6 +48,7 @@ namespace godGameServer.biz
             if (!accountCache.isMatch(account, password))
                 return new ReturnDTO(RETURN_CODE.ACCOUNT_IS_NOT_MATCH);
             accountCache.online(token, account);
+            roleBiz.Online(token);
             return new ReturnDTO(RETURN_CODE.SUCCESS);
         }
     }

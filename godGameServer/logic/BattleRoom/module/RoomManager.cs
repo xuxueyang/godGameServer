@@ -70,9 +70,14 @@ namespace godGameServer.logic.BattleRoom.module
         public void createOneRoom(List<UserToken> userTokens)
         {
             Tuple<bool,List<RoleModel>>  tuple = GetModelsByTokens(userTokens);
-            if(tuple.Item1)
+            if (tuple.Item1)
+            {
                 // 告诉这些用户，创建房间成功
-                createRoom(tuple.Item2,RoomType.ONE_NPC_ROOM);
+                createRoom(tuple.Item2, RoomType.ONE_NPC_ROOM);
+                //TODO
+                //write(tuple.Item2[0].accountId, BattleRoomProtocol.CREATE_ONE_S, new ReturnDTO(RETURN_CODE.SUCCESS));
+            }
+
             else
             {
                 // 告诉其他用户，有人掉线，创建失败！
@@ -96,6 +101,15 @@ namespace godGameServer.logic.BattleRoom.module
                             Room room = RoomFactory.Instance.createOneRoom(roleModels[0]);
                             start(room);
                         }
+                        //创建成功，发送消息
+                        Console.WriteLine(""+ roleModels[0].accountId +" 的玩家创建成功");
+                        write(roleModels[0].accountId, BattleRoomProtocol.CREATE_ONE_S);
+                    }
+                    else
+                    {
+                        //错误创建失败，发送消息
+                        Console.WriteLine("" + roleModels[0].accountId + " 的玩家创建失败，因为有多个");
+
                     }
                     break;
                 case RoomType.DEMO_NPC:
@@ -136,7 +150,10 @@ namespace godGameServer.logic.BattleRoom.module
         {
             //将玩家设置为回合开始，同时，通知一下room的用户们回合开始了！
             _pre_one_start(room);
+            var players = room.getAllPlayer();
             room.battleTimeType = BattleTimeType.START;
+            room.selectStartRole(players, new List<int>() { 0 });
+            
             idRoomMap.Add(room.id, room);
         }
 

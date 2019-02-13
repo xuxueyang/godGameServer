@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Protocol.DTO.BattleRoomDTO
 {
+    [Serializable]
     public class RoomDTO
     {
         public string roomId;

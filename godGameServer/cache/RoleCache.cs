@@ -31,7 +31,11 @@ namespace godGameServer.cache
         /// 账号id与连接token
         /// </summary>
         Dictionary<long, UserToken> idToTokenMap = new Dictionary<long, UserToken>();
-        
+
+        public RoleCache()
+        {
+            createRole(1, "测试账号角色");
+        }
         public void createRole(long accountId, string name)
         {
             RoleModel model = new RoleModel(name, index++, accountId);

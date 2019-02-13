@@ -47,14 +47,18 @@ namespace godGameServer.logic.BattleRoom
                 case BattleRoomProtocol.CREATE_ONE_C:
                     // 创建战斗房间，需要战斗人员们的ID，从ID获取到配置的技能信息，初始化玩家的卡牌、技能、血量、MP等数据
                     // 创建怪物ID，做一个定时器，每回合调用。
+                    Console.WriteLine("接收到一个创建房间的请求");
                     roomManager.createOneRoom(new List<UserToken>() { token });
                     break;
+                //case BattleRoomProtocol.TEXT_MESSAGE:
+
+                //    break;
                 default:
                     {
                         //将消息转发到处理房间。
                         var room = roomManager.GetRoomById(message.getMessage<RoomDTO>().roomId);
                         // TODO room.useCard(message.getMessage<BattleRoomDTO>());
-                        room.receiveMessage(BattleRoomProtocol.USE_CARD_C, message.getMessage<RoomDTO>());
+                        room.receiveMessage(message.command, message.getMessage<RoomDTO>());
                     }
                     break;
             }

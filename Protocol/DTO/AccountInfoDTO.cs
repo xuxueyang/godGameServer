@@ -1,5 +1,8 @@
-﻿namespace com.xxy.Protocol.DTO
+﻿using System;
+
+namespace com.xxy.Protocol.DTO
 {
+    [Serializable]
     public class AccountInfoDTO
     {
         public string password;
