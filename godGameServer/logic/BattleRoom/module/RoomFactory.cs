@@ -18,12 +18,16 @@ namespace godGameServer.logic.BattleRoom.module
             //创建一个房间，需要其中的人员
             Room room = new Room(RoomType.DEMO_NPC,new RoomMessageManaer());
             List<RoomRole> roles = new List<RoomRole>();
-            roles.Add(RoomRoleFactory.Instance.getDemoSmallBoss());
-            roles.Add(RoomRoleFactory.Instance.getDemoSmallBoss());
+            var role1 = RoomRoleFactory.Instance.getDemoSmallBoss();
+            role1.camp = 1;
+            roles.Add(role1);
+            var role2 = RoomRoleFactory.Instance.getDemoSmallBoss();
+            role2.camp = 2;
+            roles.Add(role2);
             room.roles = roles;
             return room;
         }
-        public Room createDemoOneNPCRoom()
+        private Room createDemoOneNPCRoom()
         {
             //创建一个房间，需要其中的人员
             RoleModel roleModel = new RoleModel("测试玩家",1,1);
@@ -41,8 +45,12 @@ namespace godGameServer.logic.BattleRoom.module
         {
             Room room = new Room(RoomType.ONE_NPC_ROOM, new RoomMessageManaer());
             List<RoomRole> roles = new List<RoomRole>();
-            roles.Add(RoomRoleFactory.Instance.getDemoSmallBoss());
-            roles.Add(RoomRoleFactory.Instance.createPlayerRoleByModel(roleModel));
+            var role1 = RoomRoleFactory.Instance.getDemoSmallBoss();
+            role1.camp = 1;
+            roles.Add(role1);
+            var role2 = RoomRoleFactory.Instance.createPlayerRoleByModel(roleModel);
+            role2.camp = 2;
+            roles.Add(role2);
             room.roles = roles;
             return room;
         }

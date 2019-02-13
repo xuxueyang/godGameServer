@@ -99,10 +99,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\com.xxy.entity\com.xxy,logic.csproj">
-      <Project>{2EAA306F-E34E-4373-A7AE-C14892189A70}</Project>
-      <Name>com.xxy,logic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\com.xxy.logic2\com.xxy.logic2.csproj">
       <Project>{afab2b4c-7aad-4572-beeb-fbadd9e9f0da}</Project>
       <Name>com.xxy.logic2</Name>

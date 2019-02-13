@@ -3,13 +3,6 @@ D:/myFile/unity/godGame/godGameClient/Assets/Plugins/com.xxy.Protocol.dll
 D:/myFile/unity/godGame/godGameClient/Assets/Plugins/com.xxy.Protocol.pdb
 D:/myFile/unity/godGame/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.dll
 D:/myFile/unity/godGame/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.pdb
-D:/godGameClient/Assets/Plugins/com.xxy.Protocol.dll
-D:/godGameClient/Assets/Plugins/com.xxy.Protocol.pdb
-D:/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.csproj.CoreCompileInputs.cache
-D:/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.dll
-D:/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.pdb
-D:/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.csprojAssemblyReference.cache
-D:/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.csproj.CopyComplete
 /Users/xuxy/Documents/GitHub/godGameClient/Assets/Plugins/com.xxy.Protocol.dll
 /Users/xuxy/Documents/GitHub/godGameClient/Assets/Plugins/com.xxy.Protocol.pdb
 /Users/xuxy/Documents/GitHub/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.csprojAssemblyReference.cache
@@ -17,3 +10,9 @@ D:/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.csproj.CopyComplete
 /Users/xuxy/Documents/GitHub/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.csproj.CopyComplete
 /Users/xuxy/Documents/GitHub/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.dll
 /Users/xuxy/Documents/GitHub/godGameServer/Protocol/obj/Debug/com.xxy.Protocol.pdb
+D:\godGameClient\Assets\Plugins\com.xxy.Protocol.dll
+D:\godGameClient\Assets\Plugins\com.xxy.Protocol.pdb
+D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.csproj.CoreCompileInputs.cache
+D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.csproj.CopyComplete
+D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.dll
+D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.pdb

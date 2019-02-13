@@ -11,6 +11,7 @@ namespace com.xxy.logic.Base
         BATTLE,//战斗阶段
         NEXT,//预结束阶段
         OVER,//结束阶段
+        _GAME_OVER // 游戏结束
     }
     /// <summary>
     /// 卡牌类型，分为战斗中和非战斗中

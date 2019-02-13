@@ -78,6 +78,14 @@ namespace com.xxy.entity.model.BattleRoom
                     next = false;
                 }
             }
+            //判断人员死亡问题：
+            bool over = _solve_battle_game_over(roomType);
+            if (over)
+            {
+                //TODO 结束游戏
+                _game_over();
+                return;
+            }
             if (next)
             {
                 this.battleTimeType = BattleTimeType.OVER;
@@ -101,6 +109,32 @@ namespace com.xxy.entity.model.BattleRoom
                 default:
                     // 默认是全员等待OVER的状态
                     break;
+            }
+        }
+
+        private void _game_over()
+        {
+            Console.WriteLine("房间:"+ this.id +" 游戏结束");
+            //TODO 
+            //会在下一帧移除房间
+            //结算，掉落、装备、经验等等
+            this.battleTimeType = BattleTimeType._GAME_OVER;
+        }
+
+        private bool _solve_battle_game_over(RoomType roomType)
+        {
+            switch (roomType)
+            {
+                case RoomType.DEMO_NPC:
+                    //有一个怪物死了，那么游戏结束
+
+                    return false;
+                case RoomType.ONE_NPC_ROOM:
+                    //玩家或者NPC死了，那么结束//均按照阵营
+                    //还要判断玩家是不是不在线状态
+                    return false;
+                default:
+                    return false;
             }
         }
 
@@ -133,6 +167,19 @@ namespace com.xxy.entity.model.BattleRoom
                     //玩家使用来技能，针对某个对象
                     {
                         Console.WriteLine("玩家房间角色：" + result.roomRoleId + "使用了技能");
+                        try
+                        {
+                            UseSkillEventArgs args = new UseSkillEventArgs();
+                            args.UseSkillId = (int)result.map[CommonFieldProtocol.useSkillId];
+                            var targetIds = (List<string>)result.map[CommonFieldProtocol.targetIds];
+                            args.targets = getRolesByIds(targetIds);
+                            var role = getRoomRoleById(result.roomRoleId);
+                            role._wantToUseCardSkill = args;
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                     break;
                 case BattleRoomProtocol.OVER_TIME_C:
@@ -144,6 +191,7 @@ namespace com.xxy.entity.model.BattleRoom
                             var role = getRoomRoleById(id);
                             if (role != null)
                             {
+                                Console.WriteLine("" + id + "的角色结束了自己的回合！");
                                 role.IsMyTime = false;
                             }
                         }

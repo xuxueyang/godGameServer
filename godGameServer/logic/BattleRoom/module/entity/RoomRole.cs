@@ -18,6 +18,8 @@ namespace com.xxy.entity.model.BattleRoom
         public string id;
         public BaseRoleAction role;
         public long accontId;
+        //代表所处的阵营
+        public int camp = 0;
         //TODO 卡牌资源管理
         public RoleType roleType;
         public List<BaseBuff> buffs = new List<BaseBuff>();
@@ -26,6 +28,9 @@ namespace com.xxy.entity.model.BattleRoom
         public List<BaseSkill> skillList = new List<BaseSkill>();
         public BattleTimeType battleTimeType = BattleTimeType.OVER;
 
+        //
+        public bool isActive = true;
+        private int timesNoAction = 0;
         public object _wantToUseCardSkill = null;
 
         public string roomId;
@@ -172,6 +177,7 @@ namespace com.xxy.entity.model.BattleRoom
                 // 说明输入了使用技能或卡牌
                 if (_wantToUseCardSkill != null)
                 {
+                    timesNoAction = 0;
                     lock (_wantToUseCardSkill)
                     {
                         if (_wantToUseCardSkill is UseCardEventArgs)
@@ -226,9 +232,21 @@ namespace com.xxy.entity.model.BattleRoom
                         //找不到的话，丢弃
                         this._wantToUseCardSkill = null;
                     }
-                   
-                }
 
+                }
+                else
+                {
+                    if(timesNoAction<=1000)
+                        timesNoAction++;
+                }
+                if(timesNoAction >= 10)
+                {
+                    this.isActive = false;
+                }
+                else
+                {
+                    this.isActive = true;
+                }
               
             }
         }

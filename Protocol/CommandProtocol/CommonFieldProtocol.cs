@@ -10,6 +10,8 @@ namespace Protocol.CommandProtocol
     {
 
         public const string useCardId = "useCardId";
+        public const string useSkillId = "useSkillId";
+
         public const string id = "id";
         public const string ids = "ids";
         public const string battleRoomBaseSelfInfo = "battleRoomBaseSelfInfo";

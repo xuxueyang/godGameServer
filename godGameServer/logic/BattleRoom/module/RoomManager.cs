@@ -112,12 +112,12 @@ namespace godGameServer.logic.BattleRoom.module
 
                     }
                     break;
-                case RoomType.DEMO_NPC:
-                    {
-                        Room room = RoomFactory.Instance.createDemoOneNPCRoom();
-                        start(room);
-                    }
-                    break;
+                //case RoomType.DEMO_NPC:
+                //    {
+                //        Room room = RoomFactory.Instance.createDemoOneNPCRoom();
+                //        start(room);
+                //    }
+                //    break;
             }
         }
         public override byte GetGameType()
@@ -129,7 +129,14 @@ namespace godGameServer.logic.BattleRoom.module
         {
             foreach (var room in this.idRoomMap.Values)
             {
-                room._timerLogic();
+                if(room.battleTimeType == BattleTimeType._GAME_OVER)
+                {
+                    idRoomMap.Remove(room.id);
+                }
+                else
+                {
+                    room._timerLogic();
+                }            
             }
         }
         public void start(Room room)

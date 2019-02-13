@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\com.xxy.entity\com.xxy,logic.csproj">
-      <Project>{2eaa306f-e34e-4373-a7ae-c14892189a70}</Project>
-      <Name>com.xxy,logic</Name>
+    <ProjectReference Include="..\com.xxy.logic2\com.xxy.logic2.csproj">
+      <Project>{afab2b4c-7aad-4572-beeb-fbadd9e9f0da}</Project>
+      <Name>com.xxy.logic2</Name>
     </ProjectReference>
     <ProjectReference Include="..\com.xxy.NetFrame\com.xxy.NetFrame.csproj">
       <Project>{26754eb8-c2a9-43be-81c8-f1844e47b2be}</Project>
