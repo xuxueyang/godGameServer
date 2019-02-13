@@ -25,3 +25,7 @@ D:/godGameServer/com.xxy.NetFrame/obj/Debug/com.xxy.NetFrame.pdb
 /Users/xuxy/Documents/GitHub/godGameServer/com.xxy.NetFrame/obj/Debug/com.xxy.NetFrame.csproj.CoreCompileInputs.cache
 /Users/xuxy/Documents/GitHub/godGameServer/com.xxy.NetFrame/obj/Debug/com.xxy.NetFrame.dll
 /Users/xuxy/Documents/GitHub/godGameServer/com.xxy.NetFrame/obj/Debug/com.xxy.NetFrame.pdb
+E:\Unity\Projects\godGame\godGameClient\Assets\Plugins\com.xxy.NetFrame.dll
+E:\Unity\Projects\godGame\godGameClient\Assets\Plugins\com.xxy.NetFrame.pdb
+E:\Unity\Projects\godGame\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.dll
+E:\Unity\Projects\godGame\godGameServer\com.xxy.NetFrame\obj\Debug\com.xxy.NetFrame.pdb
