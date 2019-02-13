@@ -4,9 +4,7 @@ using com.xxy.logic.Base.Card;
 using com.xxy.Protocol;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace com.xxy.entity.Base.Skill
 {
