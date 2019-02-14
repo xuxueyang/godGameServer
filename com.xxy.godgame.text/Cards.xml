@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cards>
+  <card>
+    <id>3</id>
+    <!--<nextid>5</nextid>-->
+    <name>奉献</name>
+    <description>对敌方造成基于等级*10的伤害，自己损失等量的生命值</description>
+    <!--<description>强化:对敌方造成基于等级*100的伤害，自己损失等量的生命值</description>-->
+    <level>1</level>
+    <canlevel>true</canlevel>
+    <ex>直伤，简单粗暴</ex>
+  </card>
+  <card>
+    <id>4</id>
+    <name>升级</name>
+    <description>强化下一次使用的卡牌</description>
+    <level>1</level>
+    <canlevel>false</canlevel>
+    <ex>因为一些卡牌升级到后期很费钱也越强大但是消耗大，所以用升级方式？</ex>
+  </card>
+
+</cards>
