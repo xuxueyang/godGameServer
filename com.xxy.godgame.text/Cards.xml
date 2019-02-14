@@ -1,21 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--卡牌的消耗是精力：每场战斗自动回复满（白色），技能消耗是蓝量（蓝色），如果没蓝只会自损，血量是红色-->
-<!-- 卡牌获取的应该是配方，合成还是需要自己搞的。只是在获取配方的同事，赠送一张初始化卡牌。-->
-<!-- 卡牌的配方可以升级，升级后，每次相同材料（可以少量增加，或者简单期间就不增加了），但是升级是需要对应等级，等级上限和材料的，得到的-->
-<!-- 每张卡牌都应该是消耗品，但是获取到配方后，可以重新学习和制作。类似技能书。-->
-<!-- 参考猎人 。每次卡牌的有一个作用范围，比如对应什么副本、比如进副本前使用，比如增加幸运值这些的卡牌-->
-<!-- 卡牌的配方不应该只能使用一次。每次升级的时候，都需要这个卡牌的初始配方作为基础（数目）才可以使用和升级-->
-<!-- 卡牌有着稀有度。从E到S，之后还有SS、SSS、SSS+，大部分情况下，玩家接触的卡牌应该是C-A级，E、D是最初的卡牌 -->
-<!-- 卡牌本身应该有一个类别，使用的卡牌（战斗中Battle战斗和进副本前MAP地图）、携带生效的卡牌、材料类非使用性卡牌-->
-<!-- 所以，材料类和卡牌分开。有一个搜藏系统，可以看所有的搜集到的卡牌，没有搜集到的全部用？表示。搜集到的配方显示-->
-<!-- 虚的，如果有卡牌那么显示为实的，点击卡牌可以显示效果，以及需要的制造材料，点击制作就阔以制作卡牌了，制作完可以撤销-->
-<!-- 卡牌：描述，名字，编号，稀有度，等级（与配方相对，升级后的卡牌），卡牌编号为6位，前四位为编号，后2位为等级。默认都是01，1级-->
-<!-- 背包系统中是不计算卡牌的，但是计算其他所有东西 -->
-<!-- 还有材料系统，制作卡牌的时候可以显示一个轮盘，和下表数目，和需要的材料，和总材料数目，然后点击制作 -->
 
 <cards>
   <card>
-    <id>3</id>
+    <id>000101</id>
+    <name>超低级圣疗术</name>
+    <description1>如果想要回复，就先给我一个亿。</description1>
+    <description2>【回复10点生命值】</description2>
+    <level>1</level>
+    <use>1</use>
+    <canlevel>false</canlevel>
+    <pingji>F</pingji>
+  </card>
+  <card>
+    <id>000201</id>
+    <name>超低级火球术</name>
+    <description1>火焰，是不是你最喜欢的玩具呢？</description1>
+    <description2>【造成10点伤害】</description2>
+    <level>1</level>
+    <use>1</use>
+    <canlevel>false</canlevel>
+    <pingji>F</pingji>
+  </card>
+  <card>
+    <id>000301</id>
     <!--<nextid>5</nextid>-->
     <quailty>1</quailty>
     <!--品质-->
@@ -23,21 +30,88 @@
     <description>对敌方造成基于等级*10的伤害，自己损失等量的生命值</description>
     <!--<description>强化:对敌方造成基于等级*100的伤害，自己损失等量的生命值</description>-->
     <level>1</level>
+    <use>1</use>
     <maxlevel>10</maxlevel>
     <canlevel>true</canlevel>
     <ex>直伤，简单粗暴</ex>
-    <type>hao</type>
+    <type>battle</type>
     <!--卡牌类型分为：性（一次性）(永久一次性，回复品），耗（消耗精力，每轮游戏精力有限），休（非战斗状态时可以使用）-->
   </card>
   <card>
-    <id>4</id>
+    <id>000401</id>
     <name>升级</name>
     <description>强化下一次使用的卡牌</description>
     <level>1</level>
+    <use>1</use>
     <canlevel>false</canlevel>
-    <ex>因为一些卡牌升级到后期很费钱也越强大但是消耗大，所以用升级方式？</ex>
-    <type>hao</type>
-    
+    <ex>因为一些卡牌升级到后期很费钱也越强大但是消耗大，所以用升级方式？</ex>    
   </card>
+  <card>
+    <id>000501</id>
+    <name>体质改造</name>
+    <description>将自己的所有输出变成物理输出</description>
+    <level>1</level>
+    <use>1</use>
+    <canlevel>false</canlevel>
+    <type>battle</type>
 
+  </card>
+  <card>
+    <id>000601</id>
+    <name>精神改造</name>
+    <description>将自己的所有输出变成魔法输出</description>
+    <use>1</use>
+    <level>1</level>
+    <canlevel>false</canlevel>
+    <type>battle</type>
+
+  </card>
+  <!-- S级以及S级以上特殊卡牌。这些卡牌都具有唯一编码和专属特效 -->
+  <card>
+    <id>100101</id>
+    <name>骨灰龙</name>
+    <description>死亡多年后，为了报仇而回到现实的龙。虽然已经失去了肉体，但是却更加强大。【使用后会替换你的技能和卡组】</description>
+    <ex>职业技能会被替换了。手里的卡牌保持不变。卡组变成10张为骨灰龙的专属卡。</ex>
+    <use>1</use>
+    <level>1</level>
+    <canlevel>false</canlevel>
+    <type>battle</type>
+    <pingji>SSS</pingji>
+    <childcards>
+      <childcard>
+        <id>1100101</id>
+        <name>骨灰龙的咆哮</name>
+        <description>将手牌的卡洗入牌组，重新抽取</description>
+        <ex>到时候考虑这张卡要不要保留！</ex>
+        <use>2</use>
+        <level>1</level>
+        <canlevel>false</canlevel>
+        <type>battle</type>
+        <pingji>SSS</pingji>
+    </childcard>
+      <childcard>
+        <id>1100201</id>
+        <name>骨灰龙的死亡吐息</name>
+        <description>将对方的手牌石化，摧毁对方的所有手牌</description>
+        <ex></ex>
+        <use>5</use>
+        <level>1</level>
+        <canlevel>false</canlevel>
+        <type>battle</type>
+        <pingji>SSS</pingji>
+      </childcard>
+      <childcard>
+        <id>1100301</id>
+        <name>骨灰龙的死亡凝视</name>
+        <description>将对方的生命值减半</description>
+        <ex></ex>
+        <use>5</use>
+        <level>1</level>
+        <canlevel>false</canlevel>
+        <type>battle</type>
+        <pingji>SSS</pingji>
+      </childcard>
+    </childcards>
+  </card>
+  
 </cards>
