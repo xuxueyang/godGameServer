@@ -46,7 +46,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cards.xml" />
+    <Content Include="Cards.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="设定.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
