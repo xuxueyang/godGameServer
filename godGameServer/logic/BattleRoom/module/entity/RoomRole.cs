@@ -13,7 +13,7 @@ namespace com.xxy.entity.model.BattleRoom
     /// <summary>
     /// 房间里人员信息的类
     /// </summary>
-    public class RoomRole
+    public class RoomRole:MetaRoomRole
     {
         public string id;
         public BaseRoleAction role;

@@ -95,10 +95,12 @@
     <Compile Include="logic\AbsOneHandler.cs" />
     <Compile Include="biz\impl\IRoleBiz.cs" />
     <Compile Include="logic\BattleRoom\BattleRoomHandler.cs" />
+    <Compile Include="logic\BattleRoom\module\entity\MetaRoomRole.cs" />
     <Compile Include="logic\BattleRoom\module\entity\Room.cs" />
     <Compile Include="logic\BattleRoom\module\entity\MetaRoom.cs" />
     <Compile Include="logic\BattleRoom\module\entity\RoomRole.cs" />
-    <Compile Include="logic\BattleRoom\module\entity\RoomTwoPlayer.cs" />
+    <Compile Include="logic\BattleRoom\module\entity\TwoPlayerBattle\RoomTwoPlayer.cs" />
+    <Compile Include="logic\BattleRoom\module\entity\TwoPlayerBattle\TwoPlayerRoomRole.cs" />
     <Compile Include="logic\BattleRoom\module\RoomFactory.cs" />
     <Compile Include="logic\BattleRoom\module\RoomManager.cs" />
     <Compile Include="logic\BattleRoom\module\RoomMessageManaer.cs" />

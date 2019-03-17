@@ -131,7 +131,7 @@ namespace com.xxy.entity.model.BattleRoom
             }
         }
 
-        protected override void _solve_message_dto(RoomDTO result)
+        private  void _solve_message_dto(RoomDTO result)
         {
             //收到信息的处理
             //设置room的_wantToUseCardSkill，作为消费

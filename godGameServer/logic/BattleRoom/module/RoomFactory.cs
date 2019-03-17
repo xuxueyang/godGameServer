@@ -58,7 +58,13 @@ namespace godGameServer.logic.BattleRoom.module
 
             return room;
         }
-        
+
+        public RoomTwoPlayer createTwoPlayerRoom(RoleModel palyerOne, RoleModel playerTwo)
+        {
+            TwoPlayerRoomRole roleOne = RoomRoleFactory.Instance.createTwoPlayerBattlePlayerRoleByModel(palyerOne);
+            TwoPlayerRoomRole roleTwo = RoomRoleFactory.Instance.createTwoPlayerBattlePlayerRoleByModel(playerTwo);
+            return new RoomTwoPlayer(RoomType.TWO_PLAYER,new RoomMessageManaer(), new List<RoomRole>{roleOne,roleTwo});
+        }
         
         private  static  RoomFactory _Instance;
 

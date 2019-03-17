@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using com.xxy.logic.Base;
+using godGameServer.dao.model;
 using godGameServer.logic.BattleRoom.module;
 using Protocol.DTO.BattleRoomDTO;
 
@@ -13,11 +14,17 @@ namespace com.xxy.entity.model.BattleRoom
     /// </summary>
     public class RoomTwoPlayer: MetaRoom
     {
+        private TwoPlayerRoomRole playerOne;
+        private TwoPlayerRoomRole playerTwo;
         public RoomTwoPlayer(RoomType roomType, RoomMessageManaer messageManaer,List<RoomRole> roles) 
             : base(roomType,messageManaer,roles)
         {
             if(RoomType.TWO_PLAYER != roomType)
                 throw new Exception("要求创建的房间类型不匹配");
+            if(roles.Count !=2)
+                throw new Exception("要求创建的人数不符合");
+            this.playerOne = (TwoPlayerRoomRole)roles[0];
+            this.playerTwo = (TwoPlayerRoomRole)roles[1];
         }
 
         protected override bool _solve_battle_game_over()
@@ -35,10 +42,6 @@ namespace com.xxy.entity.model.BattleRoom
             throw new NotImplementedException();
         }
 
-        protected override void _solve_message_dto(RoomDTO result)
-        {
-            throw new NotImplementedException();
-        }
 
         protected override void nextTime()
         {

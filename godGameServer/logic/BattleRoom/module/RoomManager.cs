@@ -66,7 +66,16 @@ namespace godGameServer.logic.BattleRoom.module
             }
 
             return new Tuple<bool, List<RoleModel>>(success,arrayList);
-        } 
+        }
+
+        public void createTwoRoom(RoleModel playerOne, RoleModel playerTwo)
+        {
+            var twoPlayerRoom = RoomFactory.Instance.createTwoPlayerRoom(playerOne,playerTwo);
+            // 消息通知创建成功
+            write(playerOne.accountId,BattleRoomProtocol.CREATE_TWO_S);
+            write(playerTwo.accountId,BattleRoomProtocol.CREATE_TWO_S);
+            start(twoPlayerRoom);
+        }
         public void createOneRoom(List<UserToken> userTokens)
         {
             Tuple<bool,List<RoleModel>>  tuple = GetModelsByTokens(userTokens);

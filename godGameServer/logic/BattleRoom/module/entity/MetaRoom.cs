@@ -37,8 +37,8 @@ namespace com.xxy.entity.model.BattleRoom
         //回合结束时候调用的方法
         protected abstract void _game_over();
         
-        //处理传入的信息
-        protected abstract void _solve_message_dto(RoomDTO result);
+//        //处理传入的信息
+//        protected abstract void _solve_message_dto(RoomDTO result);
 
         /// <summary>
         /// 进入下个回合
