@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using com.xxy.logic.Base;
 using godGameServer.logic.BattleRoom.module;
 using Protocol.DTO.BattleRoomDTO;
@@ -12,7 +13,8 @@ namespace com.xxy.entity.model.BattleRoom
     /// </summary>
     public class RoomTwoPlayer: MetaRoom
     {
-        public RoomTwoPlayer(RoomType roomType, RoomMessageManaer messageManaer) : base(roomType,messageManaer)
+        public RoomTwoPlayer(RoomType roomType, RoomMessageManaer messageManaer,List<RoomRole> roles) 
+            : base(roomType,messageManaer,roles)
         {
             if(RoomType.TWO_PLAYER != roomType)
                 throw new Exception("要求创建的房间类型不匹配");

@@ -17,15 +17,16 @@ namespace com.xxy.entity.model.BattleRoom
         /// </summary>
         public string id;
         public RoomType roomType;
-        public RoomMessageManaer messageManaer;
+        protected RoomMessageManaer messageManaer;
         public BattleTimeType battleTimeType = BattleTimeType._PRE_START;
-        public List<RoomRole> roles = new List<RoomRole>();
+        protected List<RoomRole> roles = new List<RoomRole>();
 
-        public MetaRoom(RoomType roomType, RoomMessageManaer messageManaer)
+        public MetaRoom(RoomType roomType, RoomMessageManaer messageManaer,List<RoomRole> roles)
         {
             this.id = CommonUtil.getUUID();
             this.messageManaer = messageManaer;
             this.roomType = roomType;
+            this.roles = roles;
         }
         
         //判断是否回合结束
@@ -102,6 +103,10 @@ namespace com.xxy.entity.model.BattleRoom
                 if (item.roleType == logic.Base.RoleType.NPC) { roles.Add(item); }
             }
             return roles;
+        }
+        protected void _write(long accontId, int commend, ReturnDTO returnDTO)
+        {
+            messageManaer.write(accontId, commend, returnDTO);
         }
     }
 }

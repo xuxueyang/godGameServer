@@ -35,9 +35,9 @@ namespace godGameServer.logic.BattleRoom.module
 //            ScheduleUtil.Instance().timeSchedule(new TimeEvent(_timer),2);
         }
         
-        public Dictionary<string,Room> idRoomMap = new Dictionary<string, Room>();
+        public Dictionary<string,MetaRoom> idRoomMap = new Dictionary<string, MetaRoom>();
 //        Random rd = new Random();
-        public Room GetRoomById(string id)
+        public MetaRoom GetRoomById(string id)
         {
             if (idRoomMap.ContainsKey(id))
                 return idRoomMap[id];
@@ -139,7 +139,7 @@ namespace godGameServer.logic.BattleRoom.module
                 }            
             }
         }
-        public void start(Room room)
+        public void start(MetaRoom room)
         {
 //            switch (room.roomType)
 //            {

@@ -19,7 +19,8 @@ namespace com.xxy.entity.model.BattleRoom
     /// </summary>
     public class Room: MetaRoom
     {
-        public Room(RoomType roomType, RoomMessageManaer messageManaer) : base(roomType, messageManaer)
+        public Room(RoomType roomType, RoomMessageManaer messageManaer,List<RoomRole> roles)
+            : base(roomType, messageManaer,roles)
         {
             
         }
@@ -232,7 +233,7 @@ namespace com.xxy.entity.model.BattleRoom
         }
         private List<RoomRole> _currentRoles;
      
-        public void selectStartRole(List<RoomRole> roles, List<int> index)
+        private void selectStartRole(List<RoomRole> roles, List<int> index)
         {
             if(battleTimeType == BattleTimeType._PRE_START)
             {
@@ -272,10 +273,6 @@ namespace com.xxy.entity.model.BattleRoom
             }
         }
 
-        public void _write(long accontId, int commend, ReturnDTO returnDTO)
-        {
-            messageManaer.write(accontId, commend, returnDTO);
-        }
         public override void _start_room()
         {
             switch (this.roomType)

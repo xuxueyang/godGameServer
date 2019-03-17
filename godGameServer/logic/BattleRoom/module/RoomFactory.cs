@@ -16,7 +16,6 @@ namespace godGameServer.logic.BattleRoom.module
         public Room createDemoTwoNPCRoom()
         {
             //创建一个房间，需要其中的人员
-            Room room = new Room(RoomType.DEMO_NPC,new RoomMessageManaer());
             List<RoomRole> roles = new List<RoomRole>();
             var role1 = RoomRoleFactory.Instance.getDemoSmallBoss();
             role1.camp = 1;
@@ -24,7 +23,9 @@ namespace godGameServer.logic.BattleRoom.module
             var role2 = RoomRoleFactory.Instance.getDemoSmallBoss();
             role2.camp = 2;
             roles.Add(role2);
-            room.roles = roles;
+//            room.roles = roles;
+           
+            Room room = new Room(RoomType.DEMO_NPC,new RoomMessageManaer(),roles);
             return room;
         }
         private Room createDemoOneNPCRoom()
@@ -34,16 +35,17 @@ namespace godGameServer.logic.BattleRoom.module
             roleModel.gameModel.baseRole.SetHp(200);
             roleModel.gameModel.baseRole.SetMp(200);
             //TODO 配置技能和卡牌
-            Room room = new Room(RoomType.ONE_NPC_ROOM, new RoomMessageManaer());
             List<RoomRole> roles = new List<RoomRole>();
             roles.Add(RoomRoleFactory.Instance.getDemoSmallBoss());
             roles.Add(RoomRoleFactory.Instance.createPlayerRoleByModel(roleModel));
-            room.roles = roles;
+            
+            Room room = new Room(RoomType.ONE_NPC_ROOM, new RoomMessageManaer(),roles);
+
+//            room.roles = roles;
             return room;
         }
         public Room createOneRoom(RoleModel roleModel)
         {
-            Room room = new Room(RoomType.ONE_NPC_ROOM, new RoomMessageManaer());
             List<RoomRole> roles = new List<RoomRole>();
             var role1 = RoomRoleFactory.Instance.getDemoSmallBoss();
             role1.camp = 1;
@@ -51,9 +53,12 @@ namespace godGameServer.logic.BattleRoom.module
             var role2 = RoomRoleFactory.Instance.createPlayerRoleByModel(roleModel);
             role2.camp = 2;
             roles.Add(role2);
-            room.roles = roles;
+//            room.roles = roles;
+            Room room = new Room(RoomType.ONE_NPC_ROOM, new RoomMessageManaer(),roles);
+
             return room;
         }
+        
         
         private  static  RoomFactory _Instance;
 
