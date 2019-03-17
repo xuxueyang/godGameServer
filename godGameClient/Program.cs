@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace godGameClient
 {
@@ -132,6 +133,7 @@ namespace godGameClient
                             break;
                         default:
                             Console.WriteLine("未知命令");
+                            Console.WriteLine(JsonConvert.SerializeObject(model));
                             break;
                     }
                     bytes = new byte[20480];

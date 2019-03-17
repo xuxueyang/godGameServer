@@ -17,30 +17,18 @@ namespace com.xxy.entity.model.BattleRoom
     /// <summary>
     /// 战斗房间的类
     /// </summary>
-    public class Room
+    public class Room: MetaRoom
     {
-        //消息队列
-        public ConcurrentQueue<RoomDTO> roomDTOs = new ConcurrentQueue<RoomDTO>();
-        /// <summary>
-        /// 房间ID
-        /// </summary>
-        public string id;
-        public RoomType roomType;
-        private RoomMessageManaer messageManaer;
-        public BattleTimeType battleTimeType = BattleTimeType._PRE_START;
-        public List<RoomRole> roles = new List<RoomRole>();
-
-        public Room(RoomType roomType, RoomMessageManaer messageManaer)
+        public Room(RoomType roomType, RoomMessageManaer messageManaer) : base(roomType, messageManaer)
         {
-            this.id = CommonUtil.getUUID();
-            this.messageManaer = messageManaer;
-            this.roomType = roomType;
+            
         }
+
 
         /// <summary>
         /// 进行房间的战斗逻辑判断
         /// </summary>
-        public void _timerLogic()
+        public override void _timerLogic()
         {
             //TODO 在每阵中，判断消息队列。有的话，要做处理！
             //玩家没有回合结束的权利，只能发送自己想结束回合的请求，能不能结束等，一切，均为服务器决定
@@ -79,7 +67,7 @@ namespace com.xxy.entity.model.BattleRoom
                 }
             }
             //判断人员死亡问题：
-            bool over = _solve_battle_game_over(roomType);
+            bool over = _solve_battle_game_over();
             if (over)
             {
                 //TODO 结束游戏
@@ -112,7 +100,11 @@ namespace com.xxy.entity.model.BattleRoom
             }
         }
 
-        private void _game_over()
+  
+
+  
+
+        protected override void _game_over()
         {
             Console.WriteLine("房间:"+ this.id +" 游戏结束");
             //TODO 
@@ -121,7 +113,7 @@ namespace com.xxy.entity.model.BattleRoom
             this.battleTimeType = BattleTimeType._GAME_OVER;
         }
 
-        private bool _solve_battle_game_over(RoomType roomType)
+        protected override bool _solve_battle_game_over()
         {
             switch (roomType)
             {
@@ -138,7 +130,7 @@ namespace com.xxy.entity.model.BattleRoom
             }
         }
 
-        private void _solve_message_dto(RoomDTO result)
+        protected override void _solve_message_dto(RoomDTO result)
         {
             //收到信息的处理
             //设置room的_wantToUseCardSkill，作为消费
@@ -215,13 +207,9 @@ namespace com.xxy.entity.model.BattleRoom
             return list;
         }
 
-        public void receiveMessage(int protocol, RoomDTO battleRoomDTO)
-        {
-            battleRoomDTO.protocol = protocol;
-            this.roomDTOs.Enqueue(battleRoomDTO);
-        }
 
-        private void nextTime()
+
+        protected override void nextTime()
         {
             //TODO 进入下一个回合，将排除当前的角色进入下一个阶段
             // 先将全员设置为不可用，从剩下的设置为回合开始
@@ -243,62 +231,7 @@ namespace com.xxy.entity.model.BattleRoom
 
         }
         private List<RoomRole> _currentRoles;
-        /// <summary>
-        /// 得到当前回合的角色
-        /// </summary>
-        /// <returns></returns>
-        private List<RoomRole> getCurrentTime()
-        {
-            List<RoomRole> roles = new List<RoomRole>();
-            foreach (var item in this.roles)
-            {
-                if (item.IsMyTime) { roles.Add(item); }
-            }
-            return roles;
-        }
-        private List<RoomRole> getNoCurrentTime()
-        {
-            List<RoomRole> roles = new List<RoomRole>();
-            foreach (var item in this.roles)
-            {
-                if (!item.IsMyTime) { roles.Add(item); }
-            }
-            return roles;
-        }
-        public RoomRole getRoomRoleById(string id)
-        {
-            foreach (var item in roles)
-            {
-                if (item.id.Equals(id))
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
-        public List<RoomRole> getAllPlayer()
-        {
-            List<RoomRole> roles = new List<RoomRole>();
-            foreach (var item in this.roles)
-            {
-                if (item.roleType == logic.Base.RoleType.PLAYER) { roles.Add(item); }
-            }
-            return roles;
-        }
-        public List<RoomRole> getAllNPC()
-        {
-            List<RoomRole> roles = new List<RoomRole>();
-            foreach (var item in this.roles)
-            {
-                if (item.roleType == logic.Base.RoleType.NPC) { roles.Add(item); }
-            }
-            return roles;
-        }
-
-        public class CardEventArgs:EventArgs
-        {
-            public string targetId;
-        }
+     
         public void selectStartRole(List<RoomRole> roles, List<int> index)
         {
             if(battleTimeType == BattleTimeType._PRE_START)
@@ -342,6 +275,113 @@ namespace com.xxy.entity.model.BattleRoom
         public void _write(long accontId, int commend, ReturnDTO returnDTO)
         {
             messageManaer.write(accontId, commend, returnDTO);
+        }
+        public override void _start_room()
+        {
+            switch (this.roomType)
+            {
+                case RoomType.DEMO_NPC:
+                    // 定时器执行
+                    pre_start_DEMO_NPC_ROOM();
+                    break;
+                case RoomType.ONE_NPC_ROOM:
+                    pre_start_ONE_NPC_ROOM();
+                    break;
+            }
+        }
+         private void pre_start_ONE_NPC_ROOM()
+        {
+            //将玩家设置为回合开始，同时，通知一下room的用户们回合开始了！
+            _pre_one_start();
+            var players = getAllPlayer();
+            battleTimeType = BattleTimeType.START;
+            selectStartRole(players, new List<int>() { 0 });
+            
+//            idRoomMap.Add(room.id, room);
+        }
+
+        private void _pre_one_start()
+        {
+            //通知所有的玩家，回合开始,以及那些人回合开始
+            RoomDTO dto = new RoomDTO();
+            List<string> ids = new List<string>();
+            //TODO 设置回合开始的人
+            dto.roomId = id;
+            dto.map.Add(CommonFieldProtocol.ids, ids);
+            //TODO 发送对应玩家的对应信息和自己的信息
+            //自己的：自己的ROOM_ID和ROOM_ROLE_ID、初始化的技能ID、卡牌ID、这些用于链接信息的
+            //别人的：ROOM_ID，角色模型ID，角色模型图片ID，没了。（不应该包含技能吧？）
+            List<RoomInfoDTO> list = new List<RoomInfoDTO>();
+            //boss采用固定编码，roomId都采用统一制作
+            foreach(var item in roles)
+            {
+                RoomInfoDTO infoDTO = new RoomInfoDTO();
+                infoDTO.roomId = id;
+                infoDTO.roomRoleId = item.id;
+                infoDTO.cardIds = new List<int>();
+                infoDTO.skillIds = new List<int>();
+                infoDTO.cards = new List<BaseCardDTO>();
+                infoDTO.skills = new List<BaseSkillDTO>();
+                foreach (var cardId in item.cardList)
+                {
+                    infoDTO.cardIds.Add(cardId.Id);
+                    BaseCardDTO baseCardDTO = new BaseCardDTO();
+                    baseCardDTO.id = cardId.Id;
+                    baseCardDTO.name = cardId.Name;
+                    baseCardDTO.description = cardId.Description;
+                    infoDTO.cards.Add(baseCardDTO);
+                }
+                foreach (var skillId in item.skillList)
+                {
+                    infoDTO.skillIds.Add(skillId.Id);
+                    BaseSkillDTO baseSkillDTO = new BaseSkillDTO();
+                    baseSkillDTO.id = skillId.Id;
+                    baseSkillDTO.name = skillId.Name;
+                    baseSkillDTO.description = skillId.Description;
+                    infoDTO.skills.Add(baseSkillDTO);
+                }
+                list.Add(infoDTO);
+            }
+            foreach (var item in getAllPlayer())
+            {
+                dto.roomRoleId = item.id;
+                List<RoomInfoDTO> selfInfoDTOs = new List<RoomInfoDTO>();
+                List<RoomInfoDTO> otherInfoDTOs = new List<RoomInfoDTO>();
+                foreach (var infoDTO in list)
+                {
+                    if(infoDTO.roomRoleId == item.id)
+                    {
+                        selfInfoDTOs.Add(infoDTO);
+                    }
+                    else
+                    {
+                        otherInfoDTOs.Add(infoDTO);
+                    }
+                }
+                dto.map.Add(CommonFieldProtocol.battleRoomBaseSelfInfo, selfInfoDTOs);
+                dto.map.Add(CommonFieldProtocol.battleRoomBaseOtherInfo, otherInfoDTOs);
+                _write(item.accontId, BattleRoomProtocol.START_TIME_S, new ReturnDTO(RETURN_CODE.SUCCESS, dto));
+            }
+
+            //this.battleTimeType = BattleTimeType.START;
+            battleTimeType = BattleTimeType.START;
+        }
+        private void pre_start_DEMO_NPC_ROOM()
+        {
+            //先确定回合是谁(默认是玩家）,随机选一个NPC开始
+            var npcs = getAllNPC();
+            if (npcs.Count < 1)
+                throw new Exception();
+            //生成随机数
+            Random rd = new Random();
+            int i = rd.Next();
+            int first = i % npcs.Count;
+            // 因为预处理在这边解决了
+            battleTimeType = BattleTimeType.START;
+            selectStartRole(npcs,new List<int>() { first });
+            // 预处理结束，假如逻辑队列，定时器执行
+            // 预处理结束，假如逻辑队列，定时器执行
+//            idRoomMap.Add(room.id, room);
         }
     }
 }

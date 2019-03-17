@@ -32,6 +32,7 @@ namespace com.xxy.logic.Base
     {
         ONE_NPC_ROOM,//自己一个人和npc的战斗房间
         DEMO_NPC,//npc之间的对战
+        TWO_PLAYER//两个玩家之间的对战
     }
     public enum BuffType
     {

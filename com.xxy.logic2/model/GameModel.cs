@@ -28,11 +28,11 @@ namespace com.xxy.entity.model
         }
         public List<BaseSkill> getBattleConfigSkills()
         {
-            return this.SkillConfManager.getBattleConfigSkills();//得到配置的技能列表，最多3个
+            return null;//this.SkillConfManager.getBattleConfigSkills();//得到配置的技能列表，最多3个
         }
         public List<BaseCard> getBattleCardConfigList()
         {
-            return this.BattleCardConfManager.getBattleCardConfigList();//得到战斗配置的卡牌数目，最多10个，A级以上只能包含1张。每张卡牌不能2张以上。
+            return null;//this.BattleCardConfManager.getBattleCardConfigList();//得到战斗配置的卡牌数目，最多10个，A级以上只能包含1张。每张卡牌不能2张以上。
             //校验，每张卡牌不能2张以上，如果不足10张，那么加入到消耗1岁造成一倍最大物理伤害或者魔法伤害的卡牌了。
         }
     }
