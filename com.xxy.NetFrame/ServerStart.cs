@@ -121,7 +121,16 @@ namespace com.xxy.NetFrame
             {
                 byte[] message = new byte[token.receiverSAEA.BytesTransferred];
                 Buffer.BlockCopy(token.receiverSAEA.Buffer, 0, message,0, token.receiverSAEA.BytesTransferred);
-                token.receive(message);
+                try
+                {
+                    //TODO 这里可能出现解析错误！
+                    token.receive(message);
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                    ClientClose(token, "客户端数据发送格式出错！");
+                }
                 StartReceive(token);
             }
             else

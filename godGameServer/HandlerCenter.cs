@@ -43,25 +43,32 @@ namespace godGameServer
 
         public override void MessageReceive(UserToken token, object message)
         {
-            Console.WriteLine("ces:"+message);
-            SocketModel model = message as SocketModel;
-            switch (model.type)
+            try
             {
-                case TypeProtocol.TYPE_LOGIN:
-                    login.MessageReceive(token, model);
-                    break;
-                case TypeProtocol.TYPE_MAIN_ROOM:
-                    mainRoom.MessageReceive(token, model);
-                    break;
-                case TypeProtocol.TYPE_MATCH_JJC:
-                    jjcmatch.MessageReceive(token, model);
-                    break;
-                case TypeProtocol.TYPE_BATTLE_ROOM:
-                    battleRoom.MessageReceive(token, model);
-                    break;
-                default:
-                    //未知模块，无视
-                    break;
+                Console.WriteLine("ces:"+message);
+                SocketModel model = message as SocketModel;
+                switch (model.type)
+                {
+                    case TypeProtocol.TYPE_LOGIN:
+                        login.MessageReceive(token, model);
+                        break;
+                    case TypeProtocol.TYPE_MAIN_ROOM:
+                        mainRoom.MessageReceive(token, model);
+                        break;
+                    case TypeProtocol.TYPE_MATCH_JJC:
+                        jjcmatch.MessageReceive(token, model);
+                        break;
+                    case TypeProtocol.TYPE_BATTLE_ROOM:
+                        battleRoom.MessageReceive(token, model);
+                        break;
+                    default:
+                        //未知模块，无视
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
     }

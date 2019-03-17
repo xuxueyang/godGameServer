@@ -144,118 +144,21 @@ namespace godGameServer.logic.BattleRoom.module
                 }
                 else
                 {
-                    room._timerLogic();
+                    try
+                    {
+                        room._timerLogic();
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception);                 
+                    }
                 }            
             }
         }
         public void start(MetaRoom room)
         {
-//            switch (room.roomType)
-//            {
-//                case RoomType.DEMO_NPC:
-//                    // 定时器执行
-//                    pre_start_DEMO_NPC_ROOM(room);
-//                    break;
-//                case RoomType.ONE_NPC_ROOM:
-//                    pre_start_ONE_NPC_ROOM(room);
-//                    break;
-//            }
             room._start_room();
             idRoomMap.Add(room.id,room);
         }
-
-//        private void pre_start_ONE_NPC_ROOM(Room room)
-//        {
-//            //将玩家设置为回合开始，同时，通知一下room的用户们回合开始了！
-//            _pre_one_start(room);
-//            var players = room.getAllPlayer();
-//            room.battleTimeType = BattleTimeType.START;
-//            room.selectStartRole(players, new List<int>() { 0 });
-//            
-//            idRoomMap.Add(room.id, room);
-//        }
-//
-//        private void _pre_one_start(Room room)
-//        {
-//            //通知所有的玩家，回合开始,以及那些人回合开始
-//            RoomDTO dto = new RoomDTO();
-//            List<string> ids = new List<string>();
-//            //TODO 设置回合开始的人
-//            dto.roomId = room.id;
-//            dto.map.Add(CommonFieldProtocol.ids, ids);
-//            //TODO 发送对应玩家的对应信息和自己的信息
-//            //自己的：自己的ROOM_ID和ROOM_ROLE_ID、初始化的技能ID、卡牌ID、这些用于链接信息的
-//            //别人的：ROOM_ID，角色模型ID，角色模型图片ID，没了。（不应该包含技能吧？）
-//            List<RoomInfoDTO> list = new List<RoomInfoDTO>();
-//            //boss采用固定编码，roomId都采用统一制作
-//            foreach(var item in room.roles)
-//            {
-//                RoomInfoDTO infoDTO = new RoomInfoDTO();
-//                infoDTO.roomId = room.id;
-//                infoDTO.roomRoleId = item.id;
-//                infoDTO.cardIds = new List<int>();
-//                infoDTO.skillIds = new List<int>();
-//                infoDTO.cards = new List<BaseCardDTO>();
-//                infoDTO.skills = new List<BaseSkillDTO>();
-//                foreach (var cardId in item.cardList)
-//                {
-//                    infoDTO.cardIds.Add(cardId.Id);
-//                    BaseCardDTO baseCardDTO = new BaseCardDTO();
-//                    baseCardDTO.id = cardId.Id;
-//                    baseCardDTO.name = cardId.Name;
-//                    baseCardDTO.description = cardId.Description;
-//                    infoDTO.cards.Add(baseCardDTO);
-//                }
-//                foreach (var skillId in item.skillList)
-//                {
-//                    infoDTO.skillIds.Add(skillId.Id);
-//                    BaseSkillDTO baseSkillDTO = new BaseSkillDTO();
-//                    baseSkillDTO.id = skillId.Id;
-//                    baseSkillDTO.name = skillId.Name;
-//                    baseSkillDTO.description = skillId.Description;
-//                    infoDTO.skills.Add(baseSkillDTO);
-//                }
-//                list.Add(infoDTO);
-//            }
-//            foreach (var item in room.getAllPlayer())
-//            {
-//                dto.roomRoleId = item.id;
-//                List<RoomInfoDTO> selfInfoDTOs = new List<RoomInfoDTO>();
-//                List<RoomInfoDTO> otherInfoDTOs = new List<RoomInfoDTO>();
-//                foreach (var infoDTO in list)
-//                {
-//                    if(infoDTO.roomRoleId == item.id)
-//                    {
-//                        selfInfoDTOs.Add(infoDTO);
-//                    }
-//                    else
-//                    {
-//                        otherInfoDTOs.Add(infoDTO);
-//                    }
-//                }
-//                dto.map.Add(CommonFieldProtocol.battleRoomBaseSelfInfo, selfInfoDTOs);
-//                dto.map.Add(CommonFieldProtocol.battleRoomBaseOtherInfo, otherInfoDTOs);
-//                room._write(item.accontId, BattleRoomProtocol.START_TIME_S, new ReturnDTO(RETURN_CODE.SUCCESS, dto));
-//            }
-//
-//            //this.battleTimeType = BattleTimeType.START;
-//            room.battleTimeType = BattleTimeType.START;
-//        }
-//
-//        private void pre_start_DEMO_NPC_ROOM(Room room)
-//        {
-//            //先确定回合是谁(默认是玩家）,随机选一个NPC开始
-//            var npcs = room.getAllNPC();
-//            if (npcs.Count < 1)
-//                throw new Exception();
-//            //生成随机数
-//            int i = rd.Next();
-//            int first = i % npcs.Count;
-//            // 因为预处理在这边解决了
-//            room.battleTimeType = BattleTimeType.START;
-//            room.selectStartRole(npcs,new List<int>() { first });
-//            //TODO 预处理结束，假如逻辑队列，定时器执行
-//            idRoomMap.Add(room.id, room);
-//        }
     }
 }
