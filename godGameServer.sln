@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xxy.logic2", "com.xxy.l
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xxy.godgame.text", "com.xxy.godgame.text\com.xxy.godgame.text.csproj", "{F8C018D0-759F-400E-A4B3-7610EBC939DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "godGameServerTests", "godGameServerTests\godGameServerTests.csproj", "{928F7FB0-CEDE-4E27-8DEB-883881D5F97A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F8C018D0-759F-400E-A4B3-7610EBC939DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8C018D0-759F-400E-A4B3-7610EBC939DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8C018D0-759F-400E-A4B3-7610EBC939DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{928F7FB0-CEDE-4E27-8DEB-883881D5F97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{928F7FB0-CEDE-4E27-8DEB-883881D5F97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{928F7FB0-CEDE-4E27-8DEB-883881D5F97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{928F7FB0-CEDE-4E27-8DEB-883881D5F97A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

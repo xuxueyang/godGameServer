@@ -34,7 +34,8 @@ namespace godGameServer.cache
 
         public RoleCache()
         {
-            createRole(1, "测试账号角色");
+            createRole(1, "测试账号角色1");
+            createRole(2, "测试账号角色2");
         }
         public void createRole(long accountId, string name)
         {

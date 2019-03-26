@@ -9,12 +9,14 @@ namespace com.xxy.logic.Base.Card
     {
         public List<BaseRoleAction> targets;
         public long UseCardId;
+        public string UseRoleId;
         //public 
     }
     public class UseSkillEventArgs:EventArgs
     {
         public List<BaseRoleAction> targets;
         public long UseSkillId;
+        public string UseRoleId;
     }
     /// <summary>
     /// 使用卡牌的实现效果

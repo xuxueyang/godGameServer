@@ -27,7 +27,7 @@ namespace godGameServer.cache
         public AccountCache()
         {
             createAccount("admin", "admin");
-            
+            createAccount("admin2", "admin2");
         }
 
         public void createAccount(string account, string password)

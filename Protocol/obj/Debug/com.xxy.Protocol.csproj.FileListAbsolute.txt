@@ -20,3 +20,4 @@ E:\Unity\Projects\godGame\godGameClient\Assets\Plugins\com.xxy.Protocol.dll
 E:\Unity\Projects\godGame\godGameClient\Assets\Plugins\com.xxy.Protocol.pdb
 E:\Unity\Projects\godGame\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.dll
 E:\Unity\Projects\godGame\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.pdb
+D:\godGameServer\Protocol\obj\Debug\com.xxy.Protocol.csprojAssemblyReference.cache

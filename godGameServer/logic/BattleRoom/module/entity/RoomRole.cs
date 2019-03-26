@@ -15,49 +15,44 @@ namespace com.xxy.entity.model.BattleRoom
     /// </summary>
     public class RoomRole:MetaRoomRole
     {
-        public string id;
+
         public BaseRoleAction role;
-        public long accontId;
+        
         //代表所处的阵营
         public int camp = 0;
-        //TODO 卡牌资源管理
-        public RoleType roleType;
-        public List<BaseBuff> buffs = new List<BaseBuff>();
-        public List<BaseCard> cardList = new List<BaseCard>();
-        //TODO 技能资源管理
-        public List<BaseSkill> skillList = new List<BaseSkill>();
-        public BattleTimeType battleTimeType = BattleTimeType.OVER;
+
 
         //
         public bool isActive = true;
-        private int timesNoAction = 0;
+        
         public object _wantToUseCardSkill = null;
 
         public string roomId;
         /// <summary>
         /// 默认不是自己的回合
         /// </summary>
-        private bool isMyTime = false;
 
-        public bool IsMyTime {
-            get  { return isMyTime; }
-            set  {
-                isMyTime = value;
-                //如果我是玩家，进入我的回合
-                if (isMyTime&&roleType == RoleType.PLAYER)
-                {
-                    //打印我能用的技能
-                    foreach (var item in cardList)
-                    {
-                        Console.WriteLine("我拥有卡牌：" + item.Name + " 介绍:" + item.Description);
-                    }
-                    foreach (var item in skillList)
-                    {
-                        Console.WriteLine("我拥有技能：" + item.Name + " 介绍:" + item.Description + "消耗MP:"+item.needMp);
-                    }
-                }
-            }
-        }
+        //override public bool IsMyTime
+        //{
+        //    get { return isMyTime; }
+        //    set
+        //    {
+        //        isMyTime = value;
+        //        //如果我是玩家，进入我的回合
+        //        if (isMyTime && roleType == RoleType.PLAYER)
+        //        {
+        //            //打印我能用的技能
+        //            foreach (var item in cardList)
+        //            {
+        //                Console.WriteLine("我拥有卡牌：" + item.Name + " 介绍:" + item.Description);
+        //            }
+        //            foreach (var item in skillList)
+        //            {
+        //                Console.WriteLine("我拥有技能：" + item.Name + " 介绍:" + item.Description + "消耗MP:" + item.needMp);
+        //            }
+        //        }
+        //    }
+        //}
         public RoomRole(string roomId, BaseRoleAction role, RoleType roleType)
         {
             _init(roomId, -1, role, roleType);
@@ -169,7 +164,7 @@ namespace com.xxy.entity.model.BattleRoom
                 Console.WriteLine("" + this.id + "随机使用技能结束。。。");
                 //TODO 发送NPC回合结束的触发
             }
-            else if(roleType == RoleType.PLAYER)
+            else if(roleType == RoleType.PLAYER && this.isActive)
             {
                 //等待玩家输入指令
                 Console.WriteLine("等待"+ this.id +"玩家的输入");
@@ -245,7 +240,7 @@ namespace com.xxy.entity.model.BattleRoom
                 }
                 else
                 {
-                    this.isActive = true;
+                     this.isActive = true;
                 }
               
             }
